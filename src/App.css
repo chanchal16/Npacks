@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+body{
+  font-family: 'Nunito', sans-serif !important;
+}
+.App {
+  text-align: center;
+  min-height: 100vh;
+}
+.MuiPaper-elevation4{
+  box-shadow: none !important;
+}
+
+.MuiSnackbarContent-root {
+  border: 1px solid #4caf50 !important;
+  background-color: #4caf50 !important;
+}
+.MuiPaper-elevation6{
+  box-shadow: none !important;
+}
+.MuiCardContent-root:last-child{
+  padding-bottom: 0 !important;
+}
+.MuiCardContent-root{
+  padding: 16px 16px 0 16px;
+}
+.recharts-default-tooltip {
+  background-color:  rgba(0, 0, 0, 0.9) !important;
+  padding: 2px !important;
+  border: none !important;
+  color: white;
+}
+
