@@ -23,6 +23,18 @@ body{
 .MuiCardContent-root{
   padding: 16px 16px 0 16px;
 }
+/********** dialog ******/
+.MuiPaper-root::-webkit-scrollbar {
+  display: none !important;
+}
+.dialogbox .MuiPaper-root {
+  background-color: #fcedbd !important;
+}
+.listItem span{
+  font-size: 0.9rem !important;
+  color: #d9b74d !important;
+}
+/*****charts*******/
 .recharts-default-tooltip {
   background-color:  rgba(0, 0, 0, 0.9) !important;
   padding: 2px !important;
