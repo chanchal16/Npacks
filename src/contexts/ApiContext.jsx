@@ -3,39 +3,6 @@ import axios from "axios";
 
 export const apiContext = createContext();
 
-export const topicsArr = [
-  {
-    title: "js",
-    topics: [
-      {
-        id: 1,
-        name: "vue"
-      },
-      {
-        id: 2,
-        name: "react"
-      },
-      {
-        id: 3,
-        name: "angular"
-      }
-    ]
-  },
-  {
-    title: "css",
-    topics: [
-      {
-        id: 4,
-        name: "bootstrap"
-      },
-      {
-        id: 5,
-        name: "tailwind"
-      }
-    ]
-  }
-];
-
 export default function ApiContextProvider({children}) {
     const [fetchedRepo, setFetchedRepo] = useState();
     const [fetchedPackages, setFetchedPackages] = useState([]);
@@ -128,7 +95,7 @@ export default function ApiContextProvider({children}) {
 
   
     const providerItem = {fetchPackages, fetchRepos,getPackDownloads,fetchedRepo,fetchedPackages,
-      topicsArr,downloadscount,weeklyDownloads,monthlyDownloads };
+     downloadscount,weeklyDownloads,monthlyDownloads };
     return (
         <div>
             <apiContext.Provider value={providerItem}>
