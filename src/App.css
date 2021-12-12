@@ -28,12 +28,14 @@ body{
   display: none !important;
 }
 .dialogbox .MuiPaper-root {
-  background-color: #fcedbd !important;
+  /* background-color: #fcedbd !important; */
+  background-color:  #171717 ;
 }
 .listItem span{
   font-size: 0.9rem !important;
-  color: #d9b74d !important;
+  color: #fcd34d !important;
 }
+
 /*****charts*******/
 .recharts-default-tooltip {
   background-color:  rgba(0, 0, 0, 0.9) !important;
