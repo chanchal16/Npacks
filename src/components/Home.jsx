@@ -36,7 +36,7 @@ export default function Home() {
     const {fetchPackages} = useContext(apiContext)   
     const [topic, setTopic] = useState('bundler');
     const [open, setOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState();
+    const [selectedValue, setSelectedValue] = useState('bundler');
     
 
     const fetchTopicPackages = (value) => {
