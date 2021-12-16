@@ -5,6 +5,7 @@ import {Box,Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Chart as ChartJS,CategoryScale,LinearScale, BarElement,Title,Tooltip} from "chart.js";
 import { Bar } from "react-chartjs-2";
+import {RepoForkedIcon,EyeIcon,StarIcon} from '@primer/octicons-react'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -15,6 +16,9 @@ export const options = {
     title: {
       display: true,
       text: "last year commits grouped by weeks"
+    },
+    tooltip:{
+      displayColors:false
     }
   }
 };
@@ -29,12 +33,26 @@ const useStyles = makeStyles((theme)=>({
       width:380,
       margin:'1rem',
       // border:'2px solid #ccc'
-  }
+  },
+  infoouterbox:{
+      display:'flex',
+      flexDirection:'row',
+      justifyContent:'space-around',
+      marginTop:'0.2rem',
+      padding:'1rem 0'
+  },
+  innerbox:{
+      textAlign:'center',
+      color:theme.palette.primary.contrastText,
+      border:'2px solid #fce290',
+      borderRadius:'20px',
+      padding:' 2px 20px'
+  },
 }))
 
 export default function CBarChart() {
   const classes = useStyles();
-    const{commits} = useContext(apiContext)
+    const{commits,fetchedRepo} = useContext(apiContext)
     console.log('commits',commits)
 
     const unix = commits?.map((c) => {
@@ -48,6 +66,7 @@ export default function CBarChart() {
       labels,
       datasets: [
         {
+          label:'commits',
           data: commits?.map((tc) => tc?.total),
           backgroundColor: "#fce290"
         }
@@ -58,6 +77,20 @@ export default function CBarChart() {
             <Box className={classes.statsContainer}>
               <Box className={classes.chartContainer}>
                 <Bar options={options} data={data} />
+              </Box>
+            </Box>
+            <Box className={classes.infoouterbox}>
+              <Box className={classes.innerbox}>
+                  <RepoForkedIcon  />
+                  <Typography variant='h5'> {fetchedRepo?.forks}</Typography>
+              </Box>
+              <Box className={classes.innerbox}>
+                  <StarIcon  />
+                  <Typography variant='h5'> {fetchedRepo?.stargazers_count}</Typography>
+              </Box>
+              <Box className={classes.innerbox}>
+                  <EyeIcon  />
+                  <Typography variant='h5'>{fetchedRepo?.watchers}</Typography>
               </Box>
             </Box>
         </div>
