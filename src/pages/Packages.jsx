@@ -99,7 +99,7 @@ function TransitionRight(props) {
 
 export default function Packages() {
     const classes = useStyles();
-    const { fetchedPackages,fetchRepos,getPackDownloads } = useContext(apiContext);
+    const { fetchedPackages,fetchRepos,getPackDownloads,getCommits } = useContext(apiContext);
     const [copySuccess, setCopySuccess] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -109,9 +109,10 @@ export default function Packages() {
         return <Slide {...props} direction="right"/>
     }
 
-    const fetchData = (reponame,pname)=>{
+    const fetchData = (reponame,pname,rname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
+        getCommits(reponame)
     }
 
     return (
