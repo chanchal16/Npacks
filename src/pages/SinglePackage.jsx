@@ -5,12 +5,14 @@ import { apiContext } from '../contexts/ApiContext'
 import Charts from '../components/Charts';
 import * as timeago from "timeago.js";
 import {RepoForkedIcon,EyeIcon,StarIcon} from '@primer/octicons-react'
+import CBarChart from '../components/CBarChart';
 
 const useStyles = makeStyles((theme)=>({
     infocontainer:{
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-evenly',
+        flexWrap:'wrap',
         position:'relative'
     },
     gitinfo:{
@@ -70,6 +72,7 @@ export default function SinglePackage() {
             <p style={{color:'white'}}>name: {fetchedRepo?.name}</p>
             <Box className={classes.infocontainer}>
                 <Charts />
+                
                 <Box className={classes.gitinfo}>
                    <a href={fetchedRepo?.homepage} target="_blank"> <Button  style={{float:'right',color:'#fff99e'}}>Home</Button></a>
                     <Typography variant='h5'>{fetchedRepo?.name}</Typography>                 
@@ -110,6 +113,7 @@ export default function SinglePackage() {
                     </Box> 
                 </Box>
             </Box> 
+            <CBarChart />
         </div>
     )
 }
