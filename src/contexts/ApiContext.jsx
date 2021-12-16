@@ -9,7 +9,8 @@ export default function ApiContextProvider({children}) {
     const [downloadscount, setDownloadsCount] = useState([]);
     const [weeklyDownloads,setWeeklyDownloads] = useState()
     const [monthlyDownloads,setMonthlyDownloads] = useState()
-    // const [topic, setTopic] = useState(topicsArr[0].name);
+    
+    const [commits,setCommits] = useState()
     const url = "https://registry.npmjs.com/-/v1/search?";
 
     const fetchPackages = useCallback(async (topic) => {
@@ -73,6 +74,31 @@ export default function ApiContextProvider({children}) {
     },
     [],
   )
+
+  const getCommits=useCallback(
+    
+    async(rname)=>{
+      const carr = rname.split("");
+      console.log("array", carr);
+      carr.splice(8, 0, "api.");
+      carr.splice(19, 0, "/repos");
+      const api = carr.join("")
+      const apiText = "/stats/commit_activity";
+       const commits_API = api.concat(apiText)
+      await axios.get(commits_API, {
+        headers: {
+          Accept: "application/vnd.github.v3+json"
+        }
+      })
+      .then((res)=>{
+        console.log('commitsdata',res.data)
+        setCommits(res.data)
+        
+      })
+      .catch(err=>console.log(err))
+    },
+    [],
+  )
   
   const getPackDownloads =useCallback(
     async(pname)=>{
@@ -94,8 +120,8 @@ export default function ApiContextProvider({children}) {
   ) 
 
   
-    const providerItem = {fetchPackages, fetchRepos,getPackDownloads,fetchedRepo,fetchedPackages,
-     downloadscount,weeklyDownloads,monthlyDownloads };
+    const providerItem = {fetchPackages, fetchRepos,getPackDownloads,getCommits,fetchedRepo,fetchedPackages,
+     downloadscount,weeklyDownloads,monthlyDownloads,commits };
     return (
         <div>
             <apiContext.Provider value={providerItem}>
