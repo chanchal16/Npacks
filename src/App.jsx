@@ -17,7 +17,6 @@ function App() {
       <Router>
       <ThemeProvider theme={theme}>
         <Nav />
-         
         <Switch>
             <Route exact path='/'>
             <LandingPage />
@@ -26,7 +25,6 @@ function App() {
             <Route path='/packages/:name' component={SinglePackage } />
           
         </Switch>
-        
       </ThemeProvider>
       </Router>
     </div>
