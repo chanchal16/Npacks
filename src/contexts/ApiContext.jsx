@@ -8,9 +8,9 @@ export default function ApiContextProvider({children}) {
     const [fetchedPackages, setFetchedPackages] = useState([]);
     const [downloadscount, setDownloadsCount] = useState([]);
     const [weeklyDownloads,setWeeklyDownloads] = useState()
-    const [monthlyDownloads,setMonthlyDownloads] = useState()
-    
+    const [monthlyDownloads,setMonthlyDownloads] = useState() 
     const [commits,setCommits] = useState()
+
     const url = "https://registry.npmjs.com/-/v1/search?";
 
     const fetchPackages = useCallback(async (topic) => {
