@@ -25,13 +25,19 @@ export const options = {
 
 const useStyles = makeStyles((theme)=>({
   statsContainer:{
-    width:450,
+    width:460,
+    paddingTop:'12px',
     // margin:'2rem',
-    background:theme.palette.secondary.main
+    background:theme.palette.secondary.main,
+    border:theme.palette.secondary.main,
+    borderRadius:'10px',
+    // marginRight:'2rem'
+    
   },
+
   chartContainer:{
-      width:380,
-      margin:'1rem',
+      width:400,
+      margin:'auto',
       // border:'2px solid #ccc'
   },
   infoouterbox:{
@@ -52,7 +58,7 @@ const useStyles = makeStyles((theme)=>({
 
 export default function CBarChart() {
   const classes = useStyles();
-    const{commits,fetchedRepo} = useContext(apiContext)
+    const{commits,fetchedRepo} = useContext(apiContext)   
     console.log('commits',commits)
 
     const unix = commits?.map((c) => {
@@ -72,13 +78,17 @@ export default function CBarChart() {
         }
       ]
     };
+
     return (
         <div>
-            <Box className={classes.statsContainer}>
-              <Box className={classes.chartContainer}>
-                <Bar options={options} data={data} />
-              </Box>
+          <Box className={classes.statsContainer}>
+            <Box className={classes.outerchartbox}>
+              <Typography variant='h6' style={{color:'#fce290'}} >Commits</Typography> 
+                <Box className={classes.chartContainer}>
+                  <Bar options={options} data={data} />
+                </Box>
             </Box>
+            
             <Box className={classes.infoouterbox}>
               <Box className={classes.innerbox}>
                   <RepoForkedIcon  />
@@ -93,6 +103,7 @@ export default function CBarChart() {
                   <Typography variant='h5'>{fetchedRepo?.watchers}</Typography>
               </Box>
             </Box>
+          </Box>
         </div>
     )
 }
