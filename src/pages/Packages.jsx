@@ -109,10 +109,11 @@ export default function Packages() {
         return <Slide {...props} direction="right"/>
     }
 
-    const fetchData = (reponame,pname,rname)=>{
+    const fetchData = (reponame,pname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
         getCommits(reponame)
+        
     }
 
     return (
