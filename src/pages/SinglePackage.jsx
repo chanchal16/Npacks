@@ -4,23 +4,36 @@ import { makeStyles } from '@material-ui/core/styles';
 import { apiContext } from '../contexts/ApiContext'
 import Charts from '../components/Charts';
 import * as timeago from "timeago.js";
-import {RepoForkedIcon,EyeIcon,StarIcon} from '@primer/octicons-react'
+
 import CBarChart from '../components/CBarChart';
 
 const useStyles = makeStyles((theme)=>({
     infocontainer:{
         display:'flex',
         flexDirection:'row',
-        justifyContent:'space-evenly',
+        justifyContent:'center',
         flexWrap:'wrap',
-        position:'relative'
+        position:'relative',
+        margin:'20px'
+    },
+    infoItemBox:{
+        margin:'1.3rem 0',
+        // padding:'1rem'
+        width:'90%',
+        display:'inline-flex',
+        flexDirection:'row',
+        justifyContent:'space-between'
     },
     gitinfo:{
-     width:450,
+     width:420,
+     height:295,
      color:theme.palette.primary.contrastText,
      background:theme.palette.secondary.main,
+     border:theme.palette.secondary.main,
+     borderRadius:'10px',
      textAlign:'left',
-     padding:'15px'
+     padding:'22px',
+    // marginLeft:'1rem',
     },
     desc:{
         padding:'8px 0'
@@ -36,29 +49,17 @@ const useStyles = makeStyles((theme)=>({
     spanel:{
         color:theme.palette.secondary.contrastText
     },
-    infoouterbox:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-around',
-        marginTop:'0.2rem',
-        padding:'1rem 0'
-    },
-    innerbox:{
-        textAlign:'center',
-        border:'2px solid #fce290',
-        borderRadius:'20px',
-        padding:' 2px 20px'
-    },
+  
     lowerOuterBox:{
      display:'flex',
      flexDirection:'row',
      justifyContent:'flex-start',
      // margin:'1rem',
      bottom:0,
-     position:'absolute'
+    //  position:'absolute'
     },
     lowerInnerBox:{
-        margin:'1rem'
+        margin:'2rem 1rem 0'
     }
  }))
 
@@ -67,12 +68,18 @@ export default function SinglePackage() {
     const {fetchedRepo} = useContext(apiContext)
     console.log('repo',fetchedRepo)
     return (
-        <div>
+        <div style={{padding:'1rem',margin:'50px',height:'100%'}}>
            <h2 style={{color:'white'}}>single package</h2>
             <p style={{color:'white'}}>name: {fetchedRepo?.name}</p>
             <Box className={classes.infocontainer}>
-                <Charts />
+                {/* <Box > */}
+                    <Charts />
+                {/* </Box> */}
                 
+                <Box className={classes.infoItemBox}>
+                    <CBarChart />
+                {/* </Box> */}
+                {/* <Box className={classes.infoItemBox}> */}
                 <Box className={classes.gitinfo}>
                    <a href={fetchedRepo?.homepage} target="_blank"> <Button  style={{float:'right',color:'#fff99e'}}>Home</Button></a>
                     <Typography variant='h5'>{fetchedRepo?.name}</Typography>                 
@@ -87,20 +94,7 @@ export default function SinglePackage() {
                         <span className={classes.spanel}>Subscribers </span>
                         <Typography> {fetchedRepo?.subscribers_count}</Typography>                
                     </Box>
-                    <Box className={classes.infoouterbox}>
-                        <Box className={classes.innerbox}>
-                            <RepoForkedIcon  />
-                            <Typography variant='h5'> {fetchedRepo?.forks}</Typography>
-                        </Box>
-                        <Box className={classes.innerbox}>
-                            <StarIcon  />
-                            <Typography variant='h5'> {fetchedRepo?.stargazers_count}</Typography>
-                        </Box>
-                        <Box className={classes.innerbox}>
-                            <EyeIcon  />
-                            <Typography variant='h5'>{fetchedRepo?.watchers}</Typography>
-                        </Box>
-                    </Box>
+                   
                     <Box className={classes.lowerOuterBox}>
                         <Box className={classes.lowerInnerBox}>
                             <span className={classes.spanel}>License</span>
@@ -112,8 +106,9 @@ export default function SinglePackage() {
                         </Box>
                     </Box> 
                 </Box>
+                </Box>
             </Box> 
-            <CBarChart />
+            
         </div>
     )
 }
