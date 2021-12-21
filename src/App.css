@@ -6,6 +6,13 @@ body{
   text-align: center;
   min-height: 100vh;
 }
+/***search*****/
+:focus{
+  /* outline: chartreuse solid 1px; */
+  /* outline: rgb(5,5,5) !important; */
+outline: #c48535 solid 1px !important;
+}
+
 .MuiPaper-elevation4{
   box-shadow: none !important;
 }
