@@ -13,6 +13,13 @@ body{
 outline: #c48535 solid 1px !important;
 }
 
+/******breadcrums**************/
+.MuiBreadcrumbs-separator{
+  font-size: 25px !important;
+}
+
+/****snackbar******/
+
 .MuiPaper-elevation4{
   box-shadow: none !important;
 }
@@ -24,6 +31,8 @@ outline: #c48535 solid 1px !important;
 .MuiPaper-elevation6{
   box-shadow: none !important;
 }
+
+/*****packages*****/
 .MuiCardContent-root:last-child{
   padding-bottom: 0 !important;
 }
