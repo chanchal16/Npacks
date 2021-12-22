@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext,useRef} from 'react'
-import { Box,Link,Button,Typography,List,ListItem,ListItemText,Dialog,DialogTitle,ClickAwayListener } 
+import { Box,Link,Button,Typography,Divider, Breadcrumbs } 
 from '@material-ui/core';
 import { apiContext } from '../contexts/ApiContext';
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,14 +37,15 @@ export default function Home() {
     const [topic, setTopic] = useState('bundler');
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('bundler');
-    
+    const [title,setTitle] = useState('Build tool')
 
-    const fetchTopicPackages = (value) => {
+    const fetchTopicPackages = (value,topictitle) => {
         setTopic(value);
         console.log("topic", topic);
         fetchPackages(value);
         setOpen(false);
         setSelectedValue(value);
+        setTitle(topictitle)
     };
 
     useEffect(() => {
@@ -57,14 +58,27 @@ export default function Home() {
 
     return (
         <div>
-        <Typography style={{textAlign:'left',margin:'15px 12px 0'}} variant='h5' color='primary'>JS Frameworks</Typography>
-        <Button variant="outlined" color="primary" onClick={handleClick}>
-        Categories
-        </Button>
-            <div >
-            <DialogBox selectedValue={selectedValue} open={open} onClose={fetchTopicPackages} />
+            <Box style={{margin:'20px'}} >
+                <Button variant="outlined" color="primary" onClick={handleClick} style={{marginLeft:'85%'}} >
+                Categories
+                </Button>
+            </Box>
+            <div style={{margin:'1rem auto 0 2rem'}}>
+                <Breadcrumbs color='primary'>
+                    <Typography variant='h5' color='primary'>Category</Typography>
+                    <Typography  variant='h5' color='primary'>
+                        {title}
+                    </Typography>
+                    <Typography variant='h5' color='primary'>{selectedValue}</Typography>
+                </Breadcrumbs>
             </div>
-        <Packages />
+            
+            <Box >
+                <DialogBox selectedValue={selectedValue} title={title} open={open} onClose={fetchTopicPackages} />
+            </Box>
+            <Box>
+                <Packages />
+            </Box>
         </div>
     )
 }
