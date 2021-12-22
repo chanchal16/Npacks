@@ -88,18 +88,39 @@ const topicsData = [
         ]
     },
     {
-        title:'Testing frameworks',
+        title:'Select Inputs',
         topics:[
             {
                 id:18,
-                name:'jest'
+                name:'Dropdown'
             },
             {
                 id:19,
-                name:'mocha'
+                name:'Date Picker'
             },
             {
                 id:20,
+                name:'Range Slider'
+            },
+            {
+                id:21,
+                name:'Star Rating'
+            }
+        ]
+    },
+    {
+        title:'Testing frameworks',
+        topics:[
+            {
+                id:22,
+                name:'jest'
+            },
+            {
+                id:23,
+                name:'mocha'
+            },
+            {
+                id:24,
                 name:'jasmine'
             }
         ]
@@ -108,20 +129,37 @@ const topicsData = [
         title:'File Formats',
         topics:[
             {
-                id:21,
+                id:25,
                 name:'JSON to CSV'
             },
             {
-                id:22,
+                id:26,
                 name:'DOCX to PDF'
             },
             {
-                id:23,
+                id:27,
                 name:'DOCX Parser'
             },
             {
-                id:24,
+                id:28,
                 name:'HTML Parser'
+            }
+        ]
+    },
+    {
+        title:'Media',
+        topics:[
+            {
+                id:29,
+                name:'Image Picker'
+            },
+            {
+                id:30,
+                name:'Camera'
+            },
+            {
+                id:31,
+                name:'File Uploader'
             }
         ]
     },
@@ -129,23 +167,23 @@ const topicsData = [
         title:'Other UI Components',
         topics:[
             {
-                id:25,
+                id:32,
                 name:'animations'
             },
             {
-                id:26,
+                id:33,
                 name:'carousel'
             },
             {
-                id:27,
+                id:34,
                 name:'charts'
             },
             {
-                id:28,
+                id:35,
                 name:'table'
             },
             {
-                id:29,
+                id:36,
                 name:'Progress'
             }
         ]
