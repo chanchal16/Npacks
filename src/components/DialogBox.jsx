@@ -29,14 +29,14 @@ const useStyles = makeStyles((theme)=>({
    
 }))
 
-export default function DialogBox({onClose, selectedValue, open}) {
+export default function DialogBox({onClose, selectedValue, title,open}) {
     const classes = useStyles()
     const handleClose = () => {
-        onClose(selectedValue);
+        onClose(selectedValue,title);
       };
     
-      const handleListItemClick = (value) => {
-        onClose(value);
+      const handleListItemClick = (value,topictitle) => {
+        onClose(value,topictitle);
       };
     return (
         <div>
@@ -56,7 +56,7 @@ export default function DialogBox({onClose, selectedValue, open}) {
                                         topic.topics?.map((t)=>{
                                             return(
                                                 <div className={classes.topicsbox} key={t.id}>
-                                                    <ListItem button onClick={()=>handleListItemClick(t.name)} className={classes.list} >                                              
+                                                    <ListItem button onClick={()=>handleListItemClick(t.name,topic.title)} className={classes.list} >                                              
                                                         <ListItemText primary={t.name} className='listItem' />
                                                     </ListItem>
                                                 </div>
