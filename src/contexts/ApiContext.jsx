@@ -14,7 +14,7 @@ export default function ApiContextProvider({children}) {
     const url = "https://registry.npmjs.com/-/v1/search?";
 
     const fetchPackages = useCallback(async (topic) => {
-      const queryString = "text=" + topic + "&size=10";
+      const queryString = "text=" + topic + "&size=12";
       await axios
         .get(url + queryString)
         .then((res) => {
