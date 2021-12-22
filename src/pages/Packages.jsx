@@ -9,7 +9,7 @@ import { Link as LINK } from "react-router-dom";
 
 const useStyles = makeStyles((theme)=>({
     outercontainer:{
-        margin:'6rem 0',
+        margin:'3rem 0',
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-evenly',
