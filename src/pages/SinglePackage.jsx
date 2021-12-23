@@ -69,8 +69,11 @@ export default function SinglePackage() {
     console.log('repo',fetchedRepo)
     return (
         <div style={{padding:'1rem',margin:'50px',height:'100%'}}>
-           <h2 style={{color:'white'}}>single package</h2>
-            <p style={{color:'white'}}>name: {fetchedRepo?.name}</p>
+            <Box style={{textAlign:'left',margin:'0 5rem'}}>
+                <h3 style={{color:'#fcce28',margin:0}}>{fetchedRepo?.name}</h3>
+                <span style={{color:'#ebd483'}}>{fetchedRepo?.description}</span>
+            </Box>
+           
             <Box className={classes.infocontainer}>
                 {/* <Box > */}
                     <Charts />
