@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme)=>({
         background:theme.palette.secondary.main,
         border:`2px solid ${theme.palette.secondary.main}`,
         borderRadius:'30px',
-        margin:'10% 10% 2%',
+        margin:'7% 10% 2%',
         fontSize:'18px'
     },
     popover:{
@@ -57,7 +57,7 @@ export default function SearchBar() {
     const [text,setText] = useState()
     const getSearchResults = (value)=>{
         setText(value)
-        fetchPackages(text)
+        fetchPackages(value)
         console.log('callback')
     }
     const debounceOnChange = useCallback(
