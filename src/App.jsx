@@ -8,6 +8,7 @@ import Nav from './components/Nav'
 import Home from './components/Home'
 import SinglePackage from './pages/SinglePackage'
 import LandingPage from './pages/LandingPage'
+import Footer from './components/Footer'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/packages/:name' component={SinglePackage } />
           
         </Switch>
+        <Footer />
       </ThemeProvider>
       </Router>
     </div>
