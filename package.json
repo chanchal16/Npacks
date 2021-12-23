@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
     "@primer/octicons-react": "^16.1.1",
     "axios": "^0.24.0",
     "chart.js": "^3.6.2",
