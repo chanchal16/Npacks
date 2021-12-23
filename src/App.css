@@ -13,6 +13,11 @@ body{
 outline: #c48535 solid 1px !important;
 }
 
+.MuiButton-label{
+  /* color: black !important; */
+  font-weight: 530 !important;
+}
+
 /******breadcrums**************/
 .MuiBreadcrumbs-separator{
   font-size: 25px !important;
