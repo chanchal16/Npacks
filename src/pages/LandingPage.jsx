@@ -24,33 +24,38 @@ const useStyles = makeStyles((theme)=>({
         flexDirection:'row',
         justifyContent:'space-between',
         background:'#e3d7c1',
-        padding:'5rem 3rem'
+        padding:'5rem 4rem'
     },
     categorybox:{
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
         background:'#5d4a32',
-        padding:'5rem 3rem'
+        padding:'5rem 1rem'
     },
     listheading:{
-        margin:'auto'
+        margin:'auto',
+        width: '50%'
     },
     screenshot:{
+        position:'relative',
         width:'400px',
         height:'300px',
         padding:'1rem',
         margin:'1rem',
         border:`2px solid ${theme.palette.primary.main}`,
-        background:theme.palette.primary.main
+        // background:theme.palette.primary.main
     },
     upperscreenshot:{
         width:'400px',
         height:'300px',
-        padding:'1rem',
+        // padding:'1rem',
         margin:'1rem',
-        border:`2px solid ${theme.palette.primary.main}`,
-        background:'black'
+        position: 'absolute',
+        // right: '-2rem',
+        // border:`2px solid ${theme.palette.primary.main}`,
+        // background:'black'
+        // overflow:'hidden'
     }
 }))
 
@@ -61,6 +66,7 @@ export default function LandingPage() {
             <Box className={classes.topcontainer}>
                 <Box className={classes.headingbox}>
                     <Typography  variant='h4' className={classes.heading}> An extensive collection of open source packages to browse through.</Typography>
+                    <Typography variant='h6' className={classes.heading}>Choose the package that best matches your application</Typography>
                 </Box>
                 <SearchBar />
                 <Link to='/home' style={{textDecoration:'none'}}>
@@ -69,16 +75,20 @@ export default function LandingPage() {
             </Box>
             <Box className={classes.packagelist} >
                 <Box className={classes.listheading}>
-                <Typography variant='h3'>Select from a number of packages </Typography>
+                <Typography variant='h4'>Select from a number of packages </Typography>
                 </Box>
                 <Box className={classes.screenshot}>
-                    <Box className={classes.upperscreenshot}></Box>
+                    <Box className={classes.upperscreenshot}>
+                        <img src='../.././assets/list.png' alt='packageslist' style={{width:'450px',height:'350px'}} />
+                    </Box>
                 </Box>       
             </Box>
 
             <Box className={classes.categorybox} >
                 <Box className={classes.screenshot}>
-                    <Box className={classes.upperscreenshot}></Box>
+                    <Box className={classes.upperscreenshot}>
+                    <img src='../.././assets/catgories.png' alt='topics' style={{width:'450px',height:'350px'}} />
+                    </Box>
                 </Box>   
                 <Box className={classes.listheading}>
                     <Typography variant='h4'>Browse through a wide range of categories.</Typography>
@@ -92,7 +102,9 @@ export default function LandingPage() {
                 metrics. </Typography>
                 </Box>
                 <Box className={classes.screenshot}>
-                    <Box className={classes.upperscreenshot}></Box>
+                    <Box className={classes.upperscreenshot}>
+                    <img src='../.././assets/charts.png' alt='charts' style={{width:'450px',height:'350px'}} />
+                    </Box>
                 </Box>       
             </Box>
         </div>
