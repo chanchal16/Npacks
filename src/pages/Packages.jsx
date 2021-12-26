@@ -118,10 +118,8 @@ export default function Packages() {
     }
 
     return (
-        <>
-            {fetchedPackages ?
+        
             <div className={classes.outercontainer}>
-            
                 {
                     fetchedPackages?.map(pack=>{
                         const reponame = pack.package.links.repository
@@ -188,15 +186,7 @@ export default function Packages() {
                         )
                     })
                 }
+               
             </div>
-           
-            :
-            <div style={{minHeight:'100vh', margin:'auto'}}>
-                <Loader />
-            </div>
-         
-            }
-
-        </>
     )
 }
