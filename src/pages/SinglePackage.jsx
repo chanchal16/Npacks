@@ -6,6 +6,9 @@ import Charts from '../components/Charts';
 import * as timeago from "timeago.js";
 
 import CBarChart from '../components/CBarChart';
+import Loader from '../components/Loader';
+import { PackageIcon } from '@primer/octicons-react';
+
 
 const useStyles = makeStyles((theme)=>({
     infocontainer:{
@@ -65,10 +68,13 @@ const useStyles = makeStyles((theme)=>({
 
 export default function SinglePackage() {
     const classes = useStyles();
-    const {fetchedRepo} = useContext(apiContext)
+    const {fetchedRepo,weeklyDownloads} = useContext(apiContext)
     console.log('repo',fetchedRepo)
     return (
         <div style={{padding:'1rem',margin:'50px',height:'100%'}}>
+            {
+                weeklyDownloads ?
+            <>
             <Box style={{textAlign:'left',margin:'0 5rem'}}>
                 <h3 style={{color:'#fcce28',margin:0}}>{fetchedRepo?.name}</h3>
                 <span style={{color:'#ebd483'}}>{fetchedRepo?.description}</span>
@@ -84,9 +90,11 @@ export default function SinglePackage() {
                 {/* </Box> */}
                 {/* <Box className={classes.infoItemBox}> */}
                 <Box className={classes.gitinfo}>
-                   <a href={fetchedRepo?.homepage} target="_blank"> <Button  style={{float:'right',color:'#fff99e'}}>Home</Button></a>
-                    <Typography variant='h5'>{fetchedRepo?.name}</Typography>                 
-                    <small style={{padding:'10px 0'}}>{fetchedRepo?.language}</small>
+                   <a href={fetchedRepo?.homepage} target="_blank"> 
+                    <Button  style={{float:'right',color:'#fff99e'}}>Home</Button>
+                   </a>                       
+                    <Typography variant='h5'> <PackageIcon/> {fetchedRepo?.name}</Typography>               
+                    <small style={{padding:'10px 0'}}>&lt; &gt; {fetchedRepo?.language}</small>
                     
                     <Typography className={classes.desc}>{fetchedRepo?.description}</Typography>
                     <Box className={classes.countsbox}> 
@@ -111,7 +119,12 @@ export default function SinglePackage() {
                 </Box>
                 </Box>
             </Box> 
-            
+            </>
+            :
+                <div style={{minHeight:'100vh', margin:'auto',padding:'5rem'}}>
+                    <Loader />
+                </div>
+            }
         </div>
     )
 }
