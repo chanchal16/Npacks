@@ -147,7 +147,7 @@ export default function LandingPage() {
                                 style={{width:'500px',height:'350px'}} />
                             </Box>
                             <Box className={classes.charts}>
-                                <img src='../.././assets/charts.png' alt='charts' 
+                                <img src='../.././assets/vue.png' alt='charts' 
                                 style={{width:'500px',height:'350px'}} />
                             </Box>
                     </Box> 
