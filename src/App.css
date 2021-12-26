@@ -65,3 +65,8 @@ outline: #c48535 solid 1px !important;
   color: white;
 }
 
+/****octicon******/
+.octicon-package{
+  vertical-align: middle !important;
+}
+
