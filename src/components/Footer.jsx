@@ -9,7 +9,10 @@ const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
     footer:{
         background:theme.palette.secondary.main,
-        padding:'3rem'
+        padding:'3rem',
+        // position:'absolute',
+        bottom:0,
+        // width:'92%'
     },
     socials:{
         display:'flex',
