@@ -20,7 +20,7 @@ export default function ApiContextProvider({children}) {
         .then((res) => {
           setFetchedPackages(res.data.objects);
           console.log("response", res.data.objects);
-          console.log("fetchedtopics", fetchedPackages);
+          console.log("fetchedpackages", fetchedPackages);
         })
         .catch((err) => {
           console.log(err);
@@ -120,7 +120,7 @@ export default function ApiContextProvider({children}) {
   ) 
 
   
-    const providerItem = {fetchPackages, fetchRepos,getPackDownloads,getCommits,fetchedRepo,fetchedPackages,
+    const providerItem = {fetchPackages,fetchRepos,getPackDownloads,getCommits,fetchedRepo,fetchedPackages,
      downloadscount,weeklyDownloads,monthlyDownloads,commits };
     return (
         <div>
