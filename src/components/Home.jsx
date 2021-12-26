@@ -5,6 +5,7 @@ import { apiContext } from '../contexts/ApiContext';
 import { makeStyles } from '@material-ui/core/styles';
 import Packages from '../pages/Packages';
 import DialogBox from './DialogBox';
+import Loader from './Loader';
 
 const useStyles = makeStyles((theme)=>({
     categorycontainer:{
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme)=>({
 
 export default function Home() {
     const classes = useStyles();
-    const {fetchPackages} = useContext(apiContext)   
+    const {fetchPackages,fetchedPackages} = useContext(apiContext)   
     const [topic, setTopic] = useState('bundler');
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('bundler');
@@ -76,9 +77,18 @@ export default function Home() {
             <Box >
                 <DialogBox selectedValue={selectedValue} title={title} open={open} onClose={fetchTopicPackages} />
             </Box>
-            <Box>
-                <Packages />
-            </Box>
+            
+            {!fetchedPackages ?
+                <Box style={{minHeight:'100vh', margin:'auto',padding:'5rem'}}>
+                    <Loader />
+                </Box>
+                
+                :
+                <Box>
+                    <Packages />
+                </Box>
+            }
+            
         </div>
     )
 }
