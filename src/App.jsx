@@ -11,7 +11,7 @@ import LandingPage from './pages/LandingPage'
 import Footer from './components/Footer'
 
 function App() {
-
+  
   return (
     <ApiContextProvider>
     <div className="App">
@@ -23,8 +23,7 @@ function App() {
             <LandingPage />
             </Route>
             <Route path='/home' component={Home }/> 
-            <Route path='/packages/:name' component={SinglePackage } />
-          
+            <Route path='/packages/:name' component={SinglePackage } />         
         </Switch>
         <Footer />
       </ThemeProvider>
