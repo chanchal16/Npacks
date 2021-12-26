@@ -89,7 +89,7 @@ export default function LandingPage() {
                     </Typography>
                     </Fade>
                 </Box>
-
+                
                 {/**search bar */}
                 <SearchBar />
 
