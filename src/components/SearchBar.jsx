@@ -1,7 +1,7 @@
 import React,{useState,useContext,useCallback} from 'react'
 import { apiContext } from '../contexts/ApiContext'
 import { Link } from "react-router-dom";
-import { Box,Typography,Dialog } from '@material-ui/core';
+import { Box,Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme)=>({
@@ -53,45 +53,59 @@ function debounce(func, wait) {
 
 export default function SearchBar() {
     const classes = useStyles();
-    const {fetchedPackages,fetchPackages,fetchRepos,getPackDownloads,getCommits} = useContext(apiContext)
-    const [text,setText] = useState()
+    const {fetchedPackages,fetchPackages,fetchRepos,getPackDownloads,getCommits} 
+    = useContext(apiContext)
+    const [text,setText] = useState('')
+    const [open, setOpen] = useState(false);
+
     const getSearchResults = (value)=>{
         setText(value)
         fetchPackages(value)
         console.log('callback')
+        setOpen(true)
     }
     const debounceOnChange = useCallback(
-        debounce(getSearchResults, 400), []);
+        debounce(getSearchResults, 100), []);
 
     const fetchData = (reponame,pname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
-        getCommits(reponame)
-        
+        getCommits(reponame)     
     }
     
+    const handleClickAway = () => {
+        setOpen(false);
+        setText('')
+    };
+    
     return (
-        <div className={classes.outercontainer}>
-            <input value={text} type='search' placeholder='search packages' className={classes.searchInput} 
+        <div className={classes.outercontainer} onClick={handleClickAway}>         
+            <input type='search' value={text} placeholder='search packages' className={classes.searchInput} 
             onChange={(e)=>debounceOnChange(e.target.value)} />
-                <Box className={classes.popover}>
-                {
-                    fetchedPackages?.map(fp=>{
-                        const reponame = fp.package.links.repository
-                        const pname = fp.package.name
-                        return(
-                            <div key={fp.package.name} className={classes.outerpackbox}>
-                                <Link to={`/packages/${fp.package.name}`} key={fp.package.name} 
-                            style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>
-                                <Box className={classes.packlist}>
-                                <Typography variant='h5' style={{color:'#fce290',textAlign:'left'}}>{fp.package.name}</Typography>
-                                </Box> 
-                                </Link>
-                            </div>
-                        )
-                    })
-                }
-                </Box>
+            <Box >
+                 {open ? 
+                    <Box className={classes.popover}>
+                    {
+                        fetchedPackages?.map(fp=>{
+                            const reponame = fp.package.links.repository
+                            const pname = fp.package.name
+                            return(
+                                <div key={fp.package.name} className={classes.outerpackbox}>
+                                    <Link to={`/packages/${fp.package.name}`} key={fp.package.name} 
+                                style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>
+                                        <Box className={classes.packlist}>
+                                            <Typography variant='h5' style={{color:'#fce290',textAlign:'left'}}>
+                                                {fp.package.name}
+                                            </Typography>
+                                        </Box> 
+                                    </Link>
+                                </div>
+                            )
+                        })
+                    }
+                    </Box> 
+                 : null}  
+            </Box>
         </div>
     )
 }
