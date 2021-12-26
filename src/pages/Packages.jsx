@@ -6,6 +6,7 @@ import * as timeago from "timeago.js";
 import {CopyIcon} from '@primer/octicons-react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Link as LINK } from "react-router-dom";
+import Loader from '../components/Loader';
 
 const useStyles = makeStyles((theme)=>({
     outercontainer:{
@@ -117,73 +118,85 @@ export default function Packages() {
     }
 
     return (
-        <div className={classes.outercontainer}>
-             {
-                fetchedPackages?.map(pack=>{
-                    const reponame = pack.package.links.repository
-                    const pname = pack.package.name
-                    return(                    
-                        <div className={classes.cardContainer} key={pack.package.name}>                     
-                        <Card className={classes.card} >
-                       
-                            <CardContent className={classes.cardcontent}>
-                                <Box className={classes.boxheading}>
-                                <Typography  variant="h6" style={{color:'#fce290'}}>
-                                    {pack.package.name}
-                                    &nbsp;&nbsp;<small style={{color:'#5d5d5d'}}>v({pack.package.version})</small>
-                                </Typography> 
-                                    <div className={classes.clipboard}>
-                                        <CopyToClipboard text={`npm install ${pack.package.name}`}
-                                        onCopy={handleCopy}> 
-                                            <Box className={classes.wrapIcon}>
-                                            <span className={classes.command} >{`npm install ${pack.package.name}`}</span> 
-                                            <div className={classes.iconbtn}><CopyIcon fill='secondary'  /></div>
-                                            <Snackbar
-                                                anchorOrigin={{vertical:'top',horizontal:'right'}}
-                                                open={open}
-                                                onClose={()=>setOpen(false)}
-                                                autoHideDuration={5000}
-                                                TransitionComponent={Slide}
-                                                message="Copied successfully!"                            
-                                            />
-                                            </Box>                                                                              
-                                        </CopyToClipboard>
-                                    </div>
-                                </Box> 
-                                <LINK to={`/packages/${pack.package.name}`} key={pack.package.name} 
-                        style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>                                                          
-                                <Box className={classes.descdiv}>
-                                    <Typography style={{textAlign:'left',}}>
-                                        {pack.package.description}
-                                    </Typography>
-                                </Box>  
-                                </LINK>                                                      
-                            </CardContent>
-                            
-                           
-                            <CardActions className={classes.actionbtns}>
-                            <Box className={classes.publishbox}>
-                                <p>Last published:</p>&nbsp;
-                                <Typography variant='h6' > {timeago.format(pack.package.date)}</Typography>
-                                </Box>
-                                <Box style={{display:'inline-grid',gridTemplateColumns:'auto auto auto',gap:'8px'}} >
-                                <Link href={pack.package.links.homepage} size="small" >
-                                    Home
-                                </Link>
-                                <Link href={pack.package.links.npm} size="small" >
-                                    npm
-                                </Link>
-                                <Link href={pack.package.links.repository} size="small" >
-                                    GitHub
-                                </Link>
-                                </Box>                                          
-                            </CardActions>
-                        </Card> 
-                        </div>
+        <>
+            {fetchedPackages ?
+            <div className={classes.outercontainer}>
+            
+                {
+                    fetchedPackages?.map(pack=>{
+                        const reponame = pack.package.links.repository
+                        const pname = pack.package.name
+                        return(                    
+                            <div className={classes.cardContainer} key={pack.package.name}>                     
+                            <Card className={classes.card} >
                         
-                    )
-                })
+                                <CardContent className={classes.cardcontent}>
+                                    <Box className={classes.boxheading}>
+                                    <Typography  variant="h6" style={{color:'#fce290'}}>
+                                        {pack.package.name}
+                                        &nbsp;&nbsp;<small style={{color:'#5d5d5d'}}>v({pack.package.version})</small>
+                                    </Typography> 
+                                        <div className={classes.clipboard}>
+                                            <CopyToClipboard text={`npm install ${pack.package.name}`}
+                                            onCopy={handleCopy}> 
+                                                <Box className={classes.wrapIcon}>
+                                                <span className={classes.command} >{`npm install ${pack.package.name}`}</span> 
+                                                <div className={classes.iconbtn}><CopyIcon fill='secondary'  /></div>
+                                                <Snackbar
+                                                    anchorOrigin={{vertical:'top',horizontal:'right'}}
+                                                    open={open}
+                                                    onClose={()=>setOpen(false)}
+                                                    autoHideDuration={5000}
+                                                    TransitionComponent={Slide}
+                                                    message="Copied successfully!"                            
+                                                />
+                                                </Box>                                                                              
+                                            </CopyToClipboard>
+                                        </div>
+                                    </Box> 
+                                    <LINK to={`/packages/${pack.package.name}`} key={pack.package.name} 
+                            style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>                                                          
+                                    <Box className={classes.descdiv}>
+                                        <Typography style={{textAlign:'left',}}>
+                                            {pack.package.description}
+                                        </Typography>
+                                    </Box>  
+                                    </LINK>                                                      
+                                </CardContent>
+                                
+                            
+                                <CardActions className={classes.actionbtns}>
+                                <Box className={classes.publishbox}>
+                                    <p>Last published:</p>&nbsp;
+                                    <Typography variant='h6' > {timeago.format(pack.package.date)}</Typography>
+                                    </Box>
+                                    <Box style={{display:'inline-grid',gridTemplateColumns:'auto auto auto',gap:'8px'}} >
+                                    <Link href={pack.package.links.homepage} size="small" >
+                                        Home
+                                    </Link>
+                                    <Link href={pack.package.links.npm} size="small" >
+                                        npm
+                                    </Link>
+                                    <Link href={pack.package.links.repository} size="small" >
+                                        GitHub
+                                    </Link>
+                                    </Box>                                          
+                                </CardActions>
+                            </Card> 
+                            </div>
+                            
+                        )
+                    })
+                }
+            </div>
+           
+            :
+            <div style={{minHeight:'100vh', margin:'auto'}}>
+                <Loader />
+            </div>
+         
             }
-        </div>
+
+        </>
     )
 }
