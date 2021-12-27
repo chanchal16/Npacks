@@ -1,16 +1,23 @@
 import React,{useContext} from 'react'
-import {Box,Typography,Button} from '@material-ui/core';
+import {Box,Typography,Button,IconButton} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiContext } from '../contexts/ApiContext'
 import Charts from '../components/Charts';
 import * as timeago from "timeago.js";
-
+import { useHistory } from "react-router-dom";
 import CBarChart from '../components/CBarChart';
 import Loader from '../components/Loader';
 import { PackageIcon } from '@primer/octicons-react';
 
-
 const useStyles = makeStyles((theme)=>({
+    backbtn:{
+        float:'left',
+        background:theme.palette.primary.main,
+        '&:hover':{
+            backgroundColor:'rgb(252, 211, 77,0.8)'
+        }
+    },
     infocontainer:{
         display:'flex',
         flexDirection:'row',
@@ -68,13 +75,27 @@ const useStyles = makeStyles((theme)=>({
 
 export default function SinglePackage() {
     const classes = useStyles();
+    let history = useHistory();
+
     const {fetchedRepo,weeklyDownloads} = useContext(apiContext)
     console.log('repo',fetchedRepo)
+    
+    function handleBackClick() {
+        history.push("/home");
+    }
+
     return (
-        <div style={{padding:'1rem',margin:'50px',height:'100%'}}>
+        <div >
+            <Box style={{margin:'1rem',padding:'2rem'}}>
+            <IconButton color='secondary' size="small" className={classes.backbtn} onClick={handleBackClick}>
+                    <ArrowBackIcon />
+            </IconButton>
+            </Box>
+
             {
                 weeklyDownloads ?
-            <>
+            <div style={{padding:'1rem',margin:'50px',height:'100%'}}>
+            
             <Box style={{textAlign:'left',margin:'0 5rem'}}>
                 <h3 style={{color:'#fcce28',margin:0}}>{fetchedRepo?.name}</h3>
                 <span style={{color:'#ebd483'}}>{fetchedRepo?.description}</span>
@@ -119,7 +140,7 @@ export default function SinglePackage() {
                 </Box>
                 </Box>
             </Box> 
-            </>
+            </div>
             :
                 <div style={{minHeight:'100vh', margin:'auto',padding:'auto'}}>
                     <Loader />
