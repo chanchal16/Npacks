@@ -20,10 +20,11 @@ const useStyles = makeStyles((theme)=>({
     },
     popover:{
         width:'100%',
+        
         position:'absolute',
         zIndex:1,
         left:0,
-        background:'rgba(0,0,0,0.1)'
+        background:'rgba(0,0,0,0.6)'
     },
     outerpackbox:{
         // width:'60%',
@@ -32,10 +33,16 @@ const useStyles = makeStyles((theme)=>({
     packlist:{
        fontSize:'18px',
         width:'55%',
-        padding:'2rem',
+        padding:'1rem',
         margin:'auto',
-        border:`1.5px solid ${theme.palette.primary.main}`,
-        borderRadius:'15px'
+        background:theme.palette.secondary.main,
+        border:`1.5px solid ${theme.palette.secondary.main}`,
+        borderRadius:'15px',
+        '&:hover':{
+            border:`1.5px solid ${theme.palette.primary.main}`,
+            borderRadius:'15px',
+            // backgroundColor:'rgb(252, 211, 77,0.1)'
+        }
     }
 }))
 
@@ -90,15 +97,15 @@ export default function SearchBar() {
                             const reponame = fp.package.links.repository
                             const pname = fp.package.name
                             return(
-                                <div key={fp.package.name} className={classes.outerpackbox}>
-                                    <Link to={`/packages/${fp.package.name}`} key={fp.package.name} 
+                                <div key={fp.package.name} className={classes.outerpackbox}>      
+                                    <Box className={classes.packlist}>
+                                        <Link to={`/packages/${fp.package.name}`} key={fp.package.name} 
                                 style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>
-                                        <Box className={classes.packlist}>
                                             <Typography variant='h5' style={{color:'#fce290',textAlign:'left'}}>
                                                 {fp.package.name}
                                             </Typography>
-                                        </Box> 
-                                    </Link>
+                                        </Link>
+                                    </Box>                 
                                 </div>
                             )
                         })
