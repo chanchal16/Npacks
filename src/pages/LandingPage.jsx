@@ -9,6 +9,7 @@ import { Fade,Zoom} from "react-awesome-reveal";
 const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
     topcontainer:{
+        position:'relative'
         // height:'100vh',
         // background:theme.palette.primary.dark
     },
@@ -91,7 +92,9 @@ export default function LandingPage() {
                 </Box>
                 
                 {/**search bar */}
-                <SearchBar />
+                <Box className={classes.searchBar}>
+                    <SearchBar />
+                </Box>
 
                 <Link to='/home' style={{textDecoration:'none'}}>
                     <Button variant="outlined" color="primary" style={{margin:'5rem auto 8rem'}}>
