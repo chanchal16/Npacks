@@ -1,11 +1,13 @@
-import React,{useState,useEffect,useContext,useRef} from 'react'
-import { Box,Link,Button,Typography,Divider, Breadcrumbs } 
+import React,{useState,useEffect,useContext} from 'react'
+import { Box,Link,Button,Typography,IconButton,Breadcrumbs } 
 from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiContext } from '../contexts/ApiContext';
 import { makeStyles } from '@material-ui/core/styles';
 import Packages from '../pages/Packages';
 import DialogBox from './DialogBox';
 import Loader from './Loader';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme)=>({
     categorycontainer:{
@@ -29,11 +31,19 @@ const useStyles = makeStyles((theme)=>({
         color:theme.palette.primary.contrastText,
         margin:'0 0 5px',
         cursor:'pointer'
+    },
+    backbtn:{
+        background:theme.palette.primary.main,
+        '&:hover':{
+            backgroundColor:'rgb(252, 211, 77,0.8)'
+        }
     }
 }))
 
 export default function Home() {
     const classes = useStyles();
+    let history = useHistory();
+
     const {fetchPackages,fetchedPackages} = useContext(apiContext)   
     const [topic, setTopic] = useState('bundler');
     const [open, setOpen] = useState(false);
@@ -57,12 +67,20 @@ export default function Home() {
         setOpen(true);
       };
 
+    function handleBackClick() {
+        history.push("/");
+    }
+
     return (
         <div>
             <Box style={{margin:'20px'}} >
+                <IconButton color='secondary' size="small" className={classes.backbtn} onClick={handleBackClick}>
+                    <ArrowBackIcon />
+                </IconButton>
                 <Button variant="outlined" color="primary" onClick={handleClick} style={{marginLeft:'85%'}} >
                 Categories
                 </Button>
+
             </Box>
             <div style={{margin:'1rem auto 0 2rem'}}>
                 <Breadcrumbs color='primary'>
