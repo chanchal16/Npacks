@@ -11,11 +11,43 @@ import Loader from '../components/Loader';
 import { PackageIcon } from '@primer/octicons-react';
 
 const useStyles = makeStyles((theme)=>({
+    pagecontainer:{
+        padding:'1rem',
+        margin:'50px',
+        height:'100%',
+        [theme.breakpoints.down(767)]:{
+            padding:0,
+            margin:0
+        }
+    },
+    backbuttonbox:{
+        margin:'1rem',
+        padding:'2rem',
+        [theme.breakpoints.down(767)]:{
+            margin:'1rem 0'
+        }
+    },
     backbtn:{
         float:'left',
         background:theme.palette.primary.main,
         '&:hover':{
             backgroundColor:'rgb(252, 211, 77,0.8)'
+        },
+    },
+    heading:{
+        textAlign:'left',
+        margin:'0 5rem',
+        ['@media (width:280px)']:{
+            margin:'0 1.8rem'
+        },
+        ['@media (width:540px)']:{
+            margin:'2rem 3rem 0'
+        },
+        [theme.breakpoints.down(768)]:{
+            margin:'0 2rem'
+        },
+        [theme.breakpoints.between(768,1025)]:{
+            margin:0
         }
     },
     infocontainer:{
@@ -24,7 +56,23 @@ const useStyles = makeStyles((theme)=>({
         justifyContent:'center',
         flexWrap:'wrap',
         position:'relative',
-        margin:'20px'
+        margin:'20px',
+        [theme.breakpoints.down(767)]:{
+            flexDirection:'column',
+            margin:'1.8rem'
+        },
+        [theme.breakpoints.between(411,415)]:{
+            marginLeft:'3rem'
+        },
+        ['@media (width:280px)']:{
+            marginLeft:'1rem'
+        },
+        ['@media (width:360px)']:{
+            marginLeft:'1.2rem'
+        },
+        ['@media (width:540px)']:{
+            marginLeft:'2.7rem'
+        }
     },
     infoItemBox:{
         margin:'1.3rem 0',
@@ -32,7 +80,26 @@ const useStyles = makeStyles((theme)=>({
         width:'90%',
         display:'inline-flex',
         flexDirection:'row',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        [theme.breakpoints.down(767)]:{
+            display:'grid',
+            gridTemplateColumns:'auto',
+            gap:'1rem'
+            // flexDirection:'column', 
+                    
+        },
+        ['@media (width:768px)']:{
+            display:'grid',
+            gridTemplateColumns:'auto auto',
+            gap:'3rem',
+            marginRight:'10rem'
+        },
+        ['@media (width:1024px)']:{
+            display:'grid',
+            gridTemplateColumns:'auto auto',
+            gap:'3rem',
+            marginRight:'11rem'
+        }
     },
     gitinfo:{
      width:420,
@@ -43,7 +110,31 @@ const useStyles = makeStyles((theme)=>({
      borderRadius:'10px',
      textAlign:'left',
      padding:'22px',
-    // marginLeft:'1rem',
+     [theme.breakpoints.down(767)]:{
+         width:280,        
+        //  height:250,
+         marginTop:'1rem'
+     },
+     ['@media (width:280px)']:{
+        width:200,
+        height:'fit-content'
+     },
+     ['@media (width:320px)']:{
+        width:220,
+        // height:280
+     },
+     ['@media (width:540px)']:{
+        width:402,
+        height:'fit-content'
+     },
+     ['@media (width:768px)']:{
+        width:280,
+        height:'fit-content'
+      },
+      ['@media (width:1024px)']:{
+        width:400,
+        height:'fit-content'
+      }
     },
     desc:{
         padding:'8px 0'
@@ -61,15 +152,51 @@ const useStyles = makeStyles((theme)=>({
     },
   
     lowerOuterBox:{
-     display:'flex',
-     flexDirection:'row',
-     justifyContent:'flex-start',
-     // margin:'1rem',
-     bottom:0,
-    //  position:'absolute'
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'flex-start',
+        // margin:'1rem',
+        bottom:0,
+        //  position:'absolute'
+        
     },
     lowerInnerBox:{
-        margin:'2rem 1rem 0'
+        margin:'2rem 1rem 0',
+        [theme.breakpoints.down(767)]:{
+            marginTop:'1.5rem'
+        },
+        ['@media (width:768px)']:{
+            marginTop:' 1rem '
+        }
+    },
+    license:{
+        fontSize:'2.1rem',
+        [theme.breakpoints.down(767)]:{
+            fontSize:'1rem'
+        },
+        ['@media (width:280px)']:{
+            fontSize:'0.8rem'
+        },
+        ['@media (width:540px)']:{
+            fontSize:'1.4rem'
+        },
+
+        [theme.breakpoints.between(768,1025)]:{
+            fontSize:'1.2rem'
+        },
+        
+    },
+    updatedat:{
+        fontSize:'1.4rem',
+        [theme.breakpoints.down(767)]:{
+            fontSize:'1rem'
+        },
+        ['@media (width:540px)']:{
+            fontSize:'1.2rem'
+        },
+        [theme.breakpoints.between(768,1025)]:{
+            fontSize:'1rem'
+        }
     }
  }))
 
@@ -86,7 +213,7 @@ export default function SinglePackage() {
 
     return (
         <div >
-            <Box style={{margin:'1rem',padding:'2rem'}}>
+            <Box className={classes.backbuttonbox}>
             <IconButton color='secondary' size="small" className={classes.backbtn} onClick={handleBackClick}>
                     <ArrowBackIcon />
             </IconButton>
@@ -94,9 +221,9 @@ export default function SinglePackage() {
 
             {
                 weeklyDownloads ?
-            <div style={{padding:'1rem',margin:'50px',height:'100%'}}>
+            <div className={classes.pagecontainer}>
             
-            <Box style={{textAlign:'left',margin:'0 5rem'}}>
+            <Box className={classes.heading}>
                 <h3 style={{color:'#fcce28',margin:0}}>{fetchedRepo?.name}</h3>
                 <span style={{color:'#ebd483'}}>{fetchedRepo?.description}</span>
             </Box>
@@ -130,11 +257,11 @@ export default function SinglePackage() {
                     <Box className={classes.lowerOuterBox}>
                         <Box className={classes.lowerInnerBox}>
                             <span className={classes.spanel}>License</span>
-                            <Typography variant='h4'>{fetchedRepo?.license.spdx_id}</Typography>
+                            <Typography className={classes.license}>{fetchedRepo?.license.spdx_id}</Typography>
                         </Box>
                         <Box className={classes.lowerInnerBox}>
                             <span className={classes.spanel}>Updated at</span>
-                            <Typography variant='h5'>{timeago.format(fetchedRepo?.updated_at)}</Typography>
+                            <Typography className={classes.updatedat}>{timeago.format(fetchedRepo?.updated_at)}</Typography>
                         </Box>
                     </Box> 
                 </Box>

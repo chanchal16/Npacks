@@ -31,29 +31,76 @@ const useStyles = makeStyles((theme)=>({
     background:theme.palette.secondary.main,
     border:theme.palette.secondary.main,
     borderRadius:'10px',
-    // marginRight:'2rem'
-    
+    [theme.breakpoints.down(767)]:{
+      width:320
+    },
+    ['@media (width:280px)']:{
+      width:240
+    },
+    ['@media (width:320px)']:{
+      width:260
+    },
+    ['@media (width:540px)']:{
+      width:450
+    },
+    ['@media (width:768px)']:{
+      width:330
+    },
+    ['@media (width:1024px)']:{
+      width:450,
+      
+    }
   },
 
   chartContainer:{
       width:400,
       margin:'auto',
-      // border:'2px solid #ccc'
+      [theme.breakpoints.down(767)]:{
+        width:260
+      },
+      ['@media (width:280px)']:{
+        width:240
+      },
+      ['@media (width:320px)']:{
+        width:250
+      },
+      ['@media (width:540px)']:{
+        width:380
+      },
+      ['@media (width:768px)']:{
+        width:290
+      },
+      ['@media (width:1024px)']:{
+        width:370
+      }
   },
   infoouterbox:{
       display:'flex',
       flexDirection:'row',
       justifyContent:'space-around',
       marginTop:'0.2rem',
-      padding:'1rem 0'
+      padding:'1rem 0',
+      
   },
   innerbox:{
       textAlign:'center',
       color:theme.palette.primary.contrastText,
       border:'2px solid #fce290',
       borderRadius:'20px',
-      padding:' 2px 20px'
+      padding:' 2px 20px',
+      [theme.breakpoints.down(767)]:{
+        padding:'2px 12px'
+      },
+      ['@media (width:540px)']:{
+        padding:'2px 25px'
+      }
   },
+  gitinfoFont:{
+    fontSize:'1.25rem',
+    [theme.breakpoints.down(767)]:{
+      fontSize:'1rem'
+    }
+  }
 }))
 
 export default function CBarChart() {
@@ -92,15 +139,15 @@ export default function CBarChart() {
             <Box className={classes.infoouterbox}>
               <Box className={classes.innerbox}>
                   <RepoForkedIcon  />
-                  <Typography variant='h5'> {fetchedRepo?.forks}</Typography>
+                  <Typography className={classes.gitinfoFont}> {fetchedRepo?.forks}</Typography>
               </Box>
               <Box className={classes.innerbox}>
                   <StarIcon  />
-                  <Typography variant='h5'> {fetchedRepo?.stargazers_count}</Typography>
+                  <Typography className={classes.gitinfoFont}> {fetchedRepo?.stargazers_count}</Typography>
               </Box>
               <Box className={classes.innerbox}>
                   <EyeIcon  />
-                  <Typography variant='h5'>{fetchedRepo?.watchers}</Typography>
+                  <Typography className={classes.gitinfoFont}>{fetchedRepo?.watchers}</Typography>
               </Box>
             </Box>
           </Box>

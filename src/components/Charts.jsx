@@ -42,22 +42,63 @@ const useStyles = makeStyles((theme)=>({
         // width:'100%',
         display:'grid',
         gridTemplateColumns:'auto auto',
-        gap:'1rem',
+        gap:'1.8rem',
         // flexDirection:'row',
         // justifyContent:'space-between',
+        [theme.breakpoints.down(767)]:{
+            gridTemplateColumns:'auto '
+        },
+        [theme.breakpoints.between(768,1025)]:{
+            gap:'1rem'
+        }
         
     },
     outerchartbox:{
-        width:430,
-         margin:'0 1rem',
+        width:433,
+        margin:'0 1rem',
         padding:'15px',
         background:theme.palette.secondary.main,
         border:theme.palette.secondary.main,
-        borderRadius:'10px'
+        borderRadius:'10px',
+        [theme.breakpoints.down(767)]:{
+            width:300,
+            margin:0,
+            padding:'8px'
+        },
+        ['@media (width:280px)']:{
+            width:230
+        },
+        ['@media (width:320px)']:{
+            width:250
+        },
+        ['@media (width:540px)']:{
+            width:427
+        },
+        ['@media (width:768px)']:{
+            width:300
+        },
+        ['@media (width:1024px)']:{
+            width:420
+        }
         
     },
     chartContainer:{
         width:400,
+        [theme.breakpoints.down(767)]:{
+            width:260
+        },
+        ['@media (width:280px)']:{
+            width:230
+        },
+        ['@media (width:320px)']:{
+            width:250
+        },
+        ['@media (width:540px)']:{
+            width:380
+        },
+        ['@media (width:768px)']:{
+            width:270
+        }
         // margin:'1rem',
         // background:theme.palette.secondary.dark
         // border:'2px solid #ccc'
