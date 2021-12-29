@@ -16,11 +16,15 @@ const useStyles = makeStyles((theme)=>({
         border:`2px solid ${theme.palette.secondary.main}`,
         borderRadius:'30px',
         margin:'7% 10% 2%',
-        fontSize:'18px'
+        fontSize:'18px',
+        [theme.breakpoints.down(768)]:{
+            width:'80%',
+            fontSize:'15px'
+            // margin:'7% 7% 2%'
+        }
     },
     popover:{
-        width:'100%',
-        
+        width:'100%',     
         position:'absolute',
         zIndex:1,
         left:0,
@@ -42,6 +46,9 @@ const useStyles = makeStyles((theme)=>({
             border:`1.5px solid ${theme.palette.primary.main}`,
             borderRadius:'15px',
             // backgroundColor:'rgb(252, 211, 77,0.1)'
+        },
+        [theme.breakpoints.down(768)]:{
+            width:'70%'
         }
     }
 }))
