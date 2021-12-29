@@ -127,6 +127,10 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down(768)]:{
             fontSize:'1.5rem'
         },
+        ['@media (width:320px)']: {
+            padding:'1rem',
+            fontSize:'1.2rem'
+        },
         ['@media (width:280px)']: {
             padding:'1rem',
             fontSize:'1.2rem'
