@@ -33,7 +33,22 @@ const useStyles = makeStyles((theme)=>({
         // background:theme.palette.secondary.main,
         border:`1.5px solid ${theme.palette.primary.main}`,
         borderRadius:'20px',
-        // margin:'auto'
+        // margin:'auto',
+        ['@media (width:320px)']: {
+            width:'280px'
+        },
+        ['@media (width:360px)']: {
+            width:'300px'
+        },
+        ['@media (width:280px)']: {
+            width:'250px'
+        },
+        ['@media (width:540px)']: {
+            width:'420px'
+        },
+        ['@media (width:768px)']: {
+            width:'320px'
+        }
     },
     boxheading:{
         display:'flex',

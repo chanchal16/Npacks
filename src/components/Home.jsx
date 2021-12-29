@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme)=>({
         border:`2px solid ${theme.palette.secondary.main}`,
         borderRadius:'20px',
         margin:'1rem 3rem',
-        padding:'1rem'
+        padding:'1rem',
     },
     box:{
         width:'100px',
@@ -36,7 +36,28 @@ const useStyles = makeStyles((theme)=>({
         background:theme.palette.primary.main,
         '&:hover':{
             backgroundColor:'rgb(252, 211, 77,0.8)'
+        },
+        [theme.breakpoints.down('md')]:{
+            float:'left'
+        },
+    },
+    categorybtn:{
+        marginLeft:'85%',
+        [theme.breakpoints.down(768)]:{
+           marginLeft:'60%'
+        },
+        ['@media (width:280px)']: {
+            marginLeft:'50%'
         }
+    },
+    outerbreadcrumdiv:{
+        margin:'1rem auto 0 2rem',
+        [theme.breakpoints.down(768)]:{
+            margin:'1rem auto 0 1rem'
+        }
+    },
+    breadcrums:{
+        fontSize:'12px'
     }
 }))
 
@@ -77,13 +98,13 @@ export default function Home() {
                 <IconButton color='secondary' size="small" className={classes.backbtn} onClick={handleBackClick}>
                     <ArrowBackIcon />
                 </IconButton>
-                <Button variant="outlined" color="primary" onClick={handleClick} style={{marginLeft:'85%'}} >
+                <Button variant="outlined" color="primary" onClick={handleClick} className={classes.categorybtn} >
                 Categories
                 </Button>
 
             </Box>
-            <div style={{margin:'1rem auto 0 2rem'}}>
-                <Breadcrumbs color='primary'>
+            <div className={classes.outerbreadcrumdiv}>
+                <Breadcrumbs color='primary' className={classes.breadcrums}>
                     <Typography variant='h5' color='primary'>Category</Typography>
                     <Typography  variant='h5' color='primary'>
                         {title}
