@@ -1,6 +1,6 @@
 import React,{useContext,useState} from 'react'
 import { apiContext } from "../contexts/ApiContext";
-import {Card,CardContent,CardActions,Grid,Typography,Box,Link,Snackbar,Slide} from '@material-ui/core'
+import {Card,CardContent,CardActions,Typography,Box,Link,Snackbar,Slide} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import * as timeago from "timeago.js";
 import {CopyIcon} from '@primer/octicons-react'
@@ -100,7 +100,7 @@ function TransitionRight(props) {
 
 export default function Packages() {
     const classes = useStyles();
-    const { fetchedPackages,fetchRepos,getPackDownloads,getCommits } = useContext(apiContext);
+    const { fetchedPackages,fetchRepos,getPackDownloads } = useContext(apiContext);
     const [copySuccess, setCopySuccess] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -113,8 +113,6 @@ export default function Packages() {
     const fetchData = (reponame,pname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
-        getCommits(reponame)
-        
     }
 
     return (
