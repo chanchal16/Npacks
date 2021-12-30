@@ -99,7 +99,7 @@ export default function SearchBar() {
                             return(
                                 <div key={fp.package.name} className={classes.outerpackbox}>      
                                     <Box className={classes.packlist}>
-                                        <Link to={`/packages/${fp.package.name}`} key={fp.package.name} 
+                                        <Link to={`/package/${fp.package.name}`} key={fp.package.name} 
                                 style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>
                                             <Typography variant='h5' style={{color:'#fce290',textAlign:'left'}}>
                                                 {fp.package.name}
