@@ -8,11 +8,6 @@ import { Fade,Zoom} from "react-awesome-reveal";
 
 const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
-    topcontainer:{
-        position:'relative'
-        // height:'100vh',
-        // background:theme.palette.primary.dark
-    },
     headingbox:{
         color:theme.palette.primary.light,
         padding:'1rem',
