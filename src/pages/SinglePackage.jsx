@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import {Box,Typography,Button,IconButton} from '@material-ui/core';
+import {Box,Typography,Button,IconButton,Link} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiContext } from '../contexts/ApiContext'
@@ -188,14 +188,17 @@ const useStyles = makeStyles((theme)=>({
     },
     updatedat:{
         fontSize:'1.4rem',
+        marginTop:'8px',
         [theme.breakpoints.down(767)]:{
-            fontSize:'1rem'
+            fontSize:'1rem',
+            marginTop:0
         },
         ['@media (width:540px)']:{
             fontSize:'1.2rem'
         },
         [theme.breakpoints.between(768,1025)]:{
-            fontSize:'1rem'
+            fontSize:'1rem',
+            marginTop:0
         }
     }
  }))
@@ -235,12 +238,11 @@ export default function SinglePackage() {
                 
                 <Box className={classes.infoItemBox}>
                     <CBarChart />
-                {/* </Box> */}
-                {/* <Box className={classes.infoItemBox}> */}
+
                 <Box className={classes.gitinfo}>
-                   <a href={fetchedRepo?.homepage} target="_blank"> 
-                    <Button  style={{float:'right',color:'#fff99e'}}>Home</Button>
-                   </a>                       
+                   <Link href={fetchedRepo?.homepage} target="_blank"> 
+                    <Button style={{float:'right',color:'#fff99e'}}>Home</Button>
+                   </Link>                       
                     <Typography variant='h5'> <PackageIcon/> {fetchedRepo?.name}</Typography>               
                     <small style={{padding:'10px 0'}}>&lt; &gt; {fetchedRepo?.language}</small>
                     
