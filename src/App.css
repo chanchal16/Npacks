@@ -7,7 +7,7 @@ body{
   min-height: 100vh;
 }
 /***search*****/
-:focus{
+input:focus{
   /* outline: chartreuse solid 1px; */
   /* outline: rgb(5,5,5) !important; */
 outline: #c48535 solid 1px !important;
