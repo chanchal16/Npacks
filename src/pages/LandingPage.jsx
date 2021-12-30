@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme)=>({
     },
     subheading:{
         fontFamily:font,
+        color:'#e3d7c1',
         [theme.breakpoints.down('md')]:{
             fontSize:'15px'
         }
