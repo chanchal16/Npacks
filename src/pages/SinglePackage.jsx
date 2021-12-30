@@ -142,7 +142,7 @@ export default function SinglePackage() {
             </Box> 
             </div>
             :
-                <div style={{minHeight:'100vh', margin:'auto',padding:'3rem'}}>
+                <div style={{ margin:'auto',padding:'3rem'}}>
                     <Loader />
                 </div>
             }
