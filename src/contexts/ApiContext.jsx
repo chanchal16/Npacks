@@ -13,6 +13,8 @@ export default function ApiContextProvider({children}) {
 
     const url = "https://registry.npmjs.com/-/v1/search?";
 
+
+    /****function to fetch packages info */
     const fetchPackages = useCallback(async (topic) => {
       const queryString = "text=" + topic + "&size=12";
       await axios
@@ -31,6 +33,8 @@ export default function ApiContextProvider({children}) {
     const packs = fetchedPackages.map((p) => p.package.name);
   // console.log("names", packs);
 
+
+    /*****function to get list of packages downloads */
   const getDownloads = async () => {
     let packslist = [];
     packs.map((packname) => packslist.push(packname));
@@ -47,6 +51,7 @@ export default function ApiContextProvider({children}) {
     // console.log('d',alldownloads)
   };
 
+  /******function to fetch repo info */
   const fetchRepos = useCallback(
     async(reponame) => {
       const arr = reponame.split("");
@@ -71,35 +76,29 @@ export default function ApiContextProvider({children}) {
           console.log(err);
         });
         // getWeeklyDownloads()
+        getCommits(gitapi)
     },
     [],
   )
 
-  const getCommits=useCallback(
-    
-    async(rname)=>{
-      const carr = rname.split("");
-      console.log("array", carr);
-      carr.splice(8, 0, "api.");
-      carr.splice(19, 0, "/repos");
-      const api = carr.join("")
-      const apiText = "/stats/commit_activity";
-       const commits_API = api.concat(apiText)
-      await axios.get(commits_API, {
-        headers: {
-          Accept: "application/vnd.github.v3+json"
-        }
-      })
-      .then((res)=>{
-        console.log('commitsdata',res.data)
-        setCommits(res.data)
-        
-      })
-      .catch(err=>console.log(err))
-    },
-    [],
-  )
-  
+  /*****function to get commits of a package */
+  const getCommits = async(api)=>{
+    const apiText = "/stats/commit_activity";
+    const commits_API = api.concat(apiText)
+    await axios.get(commits_API, {
+      headers: {
+        Accept: "application/vnd.github.v3+json"
+      }
+    })
+    .then((res)=>{
+      console.log('commitsdata',res.data)
+      setCommits(res.data)
+      
+    })
+    .catch(err=>console.log(err))
+  }
+
+  /*****function to get downloads of a package */
   const getPackDownloads =useCallback(
     async(pname)=>{
       await axios.get(`https://api.npmjs.org/downloads/range/last-week/${pname}`)
@@ -119,8 +118,7 @@ export default function ApiContextProvider({children}) {
     [],
   ) 
 
-  
-    const providerItem = {fetchPackages,fetchRepos,getPackDownloads,getCommits,fetchedRepo,fetchedPackages,
+    const providerItem = {fetchPackages,fetchRepos,getPackDownloads,fetchedRepo,fetchedPackages,
      downloadscount,weeklyDownloads,monthlyDownloads,commits };
     return (
         <div>
