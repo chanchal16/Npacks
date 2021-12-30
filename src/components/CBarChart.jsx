@@ -63,7 +63,7 @@ export default function CBarChart() {
 
     const unix = commits?.map((c) => {
         let date = new Date(c.week * 1000).toLocaleDateString("en-US");
-        console.log("date", date);
+        // console.log("date", date);
         return date;
     });
 
