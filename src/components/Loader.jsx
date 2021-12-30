@@ -6,15 +6,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       position: 'relative',
     },
-    bottom: {
-      color: theme.palette.grey[theme.palette.type === 'light' ? 200 : 700],
-    },
-    top: {
-      color: '#1a90ff',
-      animationDuration: '550ms',
-      position: 'absolute',
-      left: 0,
-    },
+    
     circle: {
       strokeLinecap: 'round',
     },
@@ -23,12 +15,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Loader(props) {
     const classes = useStyles();
     return (
-        <div >
+        <div style={{margin:'auto'}} >
            
             <CircularProgress
                 variant="indeterminate"
                 disableShrink
-                size={40}
+                size={50}
                 thickness={4}
                 color='primary'
                 

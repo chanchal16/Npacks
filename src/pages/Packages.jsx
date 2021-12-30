@@ -118,7 +118,8 @@ export default function Packages() {
     }
 
     return (
-        
+        <>
+        { fetchedPackages ?
             <div className={classes.outercontainer}>
                 {
                     fetchedPackages?.map(pack=>{
@@ -152,7 +153,7 @@ export default function Packages() {
                                             </CopyToClipboard>
                                         </div>
                                     </Box> 
-                                    <LINK to={`/packages/${pack.package.name}`} key={pack.package.name} 
+                                    <LINK to={`/package/${pack.package.name}`} key={pack.package.name} 
                             style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>                                                          
                                     <Box className={classes.descdiv}>
                                         <Typography style={{textAlign:'left',}}>
@@ -188,5 +189,11 @@ export default function Packages() {
                 }
                
             </div>
+            :
+            <div style={{minHeight:'100vh', margin:'auto',padding:'10rem'}}>
+                <Loader />
+            </div>
+        }
+        </>
     )
 }
