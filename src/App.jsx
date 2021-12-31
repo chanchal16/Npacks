@@ -15,19 +15,22 @@ function App() {
   return (
     <ApiContextProvider>
     <div className="App">
-      <Router>
       <ThemeProvider theme={theme}>
         <Nav />
-        <Switch>
-            <Route exact path='/'>
-            <LandingPage />
-            </Route>
-            <Route path='/home' component={Home }/> 
-            <Route path='/packages/:name' component={SinglePackage } />         
-        </Switch>
-        <Footer />
+        <div className='main'>
+        <Router>
+        
+          <Switch>
+              <Route exact path='/'>
+              <LandingPage />
+              </Route>
+              <Route path='/home' component={Home }/> 
+              <Route path='/package/:name' component={SinglePackage } />         
+          </Switch>
+        </Router>
+        </div>
+      <Footer />
       </ThemeProvider>
-      </Router>
     </div>
     </ApiContextProvider>
   )

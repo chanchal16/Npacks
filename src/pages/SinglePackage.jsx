@@ -263,17 +263,20 @@ export default function SinglePackage() {
                         </Box>
                         <Box className={classes.lowerInnerBox}>
                             <span className={classes.spanel}>Updated at</span>
+
                             <Typography className={classes.updatedat}>{timeago.format(fetchedRepo?.updated_at)}</Typography>
                         </Box>
                     </Box> 
                 </Box>
+               
                 </Box>
             </Box> 
             </div>
             :
-                <div style={{minHeight:'100vh', margin:'auto',padding:'auto'}}>
-                    <Loader />
-                </div>
+            <Box style={{margin:'auto',padding:'7rem'}}>
+                <Loader />
+            </Box>
+                
             }
         </div>
     )

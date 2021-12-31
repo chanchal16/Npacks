@@ -1,6 +1,6 @@
 import React,{useContext,useState} from 'react'
 import { apiContext } from "../contexts/ApiContext";
-import {Card,CardContent,CardActions,Grid,Typography,Box,Link,Snackbar,Slide} from '@material-ui/core'
+import {Card,CardContent,CardActions,Typography,Box,Link,Snackbar,Slide} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import * as timeago from "timeago.js";
 import {CopyIcon} from '@primer/octicons-react'
@@ -115,7 +115,7 @@ function TransitionRight(props) {
 
 export default function Packages() {
     const classes = useStyles();
-    const { fetchedPackages,fetchRepos,getPackDownloads,getCommits } = useContext(apiContext);
+    const { fetchedPackages,fetchRepos,getPackDownloads } = useContext(apiContext);
     const [copySuccess, setCopySuccess] = useState(false);
     const [open, setOpen] = useState(false);
 
@@ -128,12 +128,11 @@ export default function Packages() {
     const fetchData = (reponame,pname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
-        getCommits(reponame)
-        
     }
 
     return (
-        
+        <>
+        { fetchedPackages ?
             <div className={classes.outercontainer}>
                 {
                     fetchedPackages?.map(pack=>{
@@ -167,7 +166,7 @@ export default function Packages() {
                                             </CopyToClipboard>
                                         </div>
                                     </Box> 
-                                    <LINK to={`/packages/${pack.package.name}`} key={pack.package.name} 
+                                    <LINK to={`/package/${pack.package.name}`} key={pack.package.name} 
                             style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>                                                          
                                     <Box className={classes.descdiv}>
                                         <Typography style={{textAlign:'left',}}>
@@ -203,5 +202,11 @@ export default function Packages() {
                 }
                
             </div>
+            :
+            <div style={{ margin:'auto',padding:'10rem'}}>
+                <Loader />
+            </div>
+        }
+        </>
     )
 }

@@ -110,7 +110,7 @@ export default function CBarChart() {
 
     const unix = commits?.map((c) => {
         let date = new Date(c.week * 1000).toLocaleDateString("en-US");
-        console.log("date", date);
+        // console.log("date", date);
         return date;
     });
 
@@ -128,6 +128,7 @@ export default function CBarChart() {
 
     return (
         <div>
+          {/* {fetchedRepo ? */}
           <Box className={classes.statsContainer}>
             <Box className={classes.outerchartbox}>
               <Typography variant='h6' style={{color:'#fce290'}} >Commits</Typography> 
@@ -151,6 +152,13 @@ export default function CBarChart() {
               </Box>
             </Box>
           </Box>
+          {/*:
+          <Box className={classes.Nodata}>
+            <Typography variant='h6' style={{margin:'auto',color:'#fce290',padding:'3rem'}}>
+              No Data Available
+            </Typography>
+          </Box>
+          */}
         </div>
     )
 }

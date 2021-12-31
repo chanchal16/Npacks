@@ -116,17 +116,20 @@ export default function Home() {
             <Box >
                 <DialogBox selectedValue={selectedValue} title={title} open={open} onClose={fetchTopicPackages} />
             </Box>
+
+            <Box>
+                <Packages />
+            </Box>  
             
-            {!fetchedPackages ?
-                <Box style={{minHeight:'100vh', margin:'auto',padding:'5rem'}}>
-                    <Loader />
-                </Box>
-                
-                :
+            {/*fetchedPackages ?
                 <Box>
                     <Packages />
+                </Box>          
+                :              
+                <Box style={{minHeight:'100vh', margin:'auto',padding:'10rem'}}>
+                    <Loader />
                 </Box>
-            }
+            */}
             
         </div>
     )
