@@ -54,15 +54,6 @@ const useStyles = makeStyles((theme)=>({
       borderRadius:'20px',
       padding:' 2px 20px'
   },
-  Nodata:{
-    width:430,
-    height:300,
-    padding:'20px',
-    // margin:'2rem',
-    background:theme.palette.secondary.main,
-    border:theme.palette.secondary.main,
-    borderRadius:'10px',
-  }
 }))
 
 export default function CBarChart() {
@@ -90,7 +81,7 @@ export default function CBarChart() {
 
     return (
         <div>
-          {fetchedRepo ?
+          {/* {fetchedRepo ? */}
           <Box className={classes.statsContainer}>
             <Box className={classes.outerchartbox}>
               <Typography variant='h6' style={{color:'#fce290'}} >Commits</Typography> 
@@ -114,13 +105,13 @@ export default function CBarChart() {
               </Box>
             </Box>
           </Box>
-          :
+          {/*:
           <Box className={classes.Nodata}>
             <Typography variant='h6' style={{margin:'auto',color:'#fce290',padding:'3rem'}}>
               No Data Available
             </Typography>
           </Box>
-          }
+          */}
         </div>
     )
 }
