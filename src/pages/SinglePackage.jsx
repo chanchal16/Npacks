@@ -108,7 +108,7 @@ export default function SinglePackage() {
                 
                 <Box className={classes.infoItemBox}>
                     <CBarChart />
-                {fetchedRepo ? 
+                
                 <Box className={classes.gitinfo}>
                    <a href={fetchedRepo?.homepage} target="_blank"> 
                     <Button  style={{float:'right',color:'#fff99e'}}>Home</Button>
@@ -138,20 +138,15 @@ export default function SinglePackage() {
                         </Box>
                     </Box> 
                 </Box>
-                :
-                <Box className={classes.gitinfo}>
-                    <Typography style={{margin:'auto',color:'#fce290',padding:'3rem',textAlign:'center'}}>
-                        No data available
-                    </Typography>
-                </Box>
-                }
+               
                 </Box>
             </Box> 
             </div>
             :
-                <div style={{ margin:'auto',padding:'8rem'}}>
-                    <Loader />
-                </div>
+            <Box style={{margin:'auto',padding:'7rem'}}>
+                <Loader />
+            </Box>
+                
             }
         </div>
     )
