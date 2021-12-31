@@ -18,6 +18,7 @@ function App() {
       <Router>
       <ThemeProvider theme={theme}>
         <Nav />
+        <div className='main'>
         <Switch>
             <Route exact path='/'>
             <LandingPage />
@@ -25,6 +26,7 @@ function App() {
             <Route path='/home' component={Home }/> 
             <Route path='/packages/:name' component={SinglePackage } />         
         </Switch>
+        </div>
         <Footer />
       </ThemeProvider>
       </Router>
