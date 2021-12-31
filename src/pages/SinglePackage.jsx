@@ -134,7 +134,7 @@ export default function SinglePackage() {
                         <Box className={classes.lowerInnerBox}>
                             <span className={classes.spanel}>Updated at</span>
                             
-                            <Typography variant='h5'>{timeago.format(fetchedRepo?.updated_at)}</Typography>
+                            <Typography className={classes.updatedat}>{timeago.format(fetchedRepo?.updated_at)}</Typography>
                         </Box>
                     </Box> 
                 </Box>
