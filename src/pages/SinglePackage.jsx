@@ -108,8 +108,7 @@ export default function SinglePackage() {
                 
                 <Box className={classes.infoItemBox}>
                     <CBarChart />
-                {/* </Box> */}
-                {/* <Box className={classes.infoItemBox}> */}
+                {fetchedRepo ? 
                 <Box className={classes.gitinfo}>
                    <a href={fetchedRepo?.homepage} target="_blank"> 
                     <Button  style={{float:'right',color:'#fff99e'}}>Home</Button>
@@ -134,15 +133,23 @@ export default function SinglePackage() {
                         </Box>
                         <Box className={classes.lowerInnerBox}>
                             <span className={classes.spanel}>Updated at</span>
+                            
                             <Typography variant='h5'>{timeago.format(fetchedRepo?.updated_at)}</Typography>
                         </Box>
                     </Box> 
                 </Box>
+                :
+                <Box className={classes.gitinfo}>
+                    <Typography style={{margin:'auto',color:'#fce290',padding:'3rem',textAlign:'center'}}>
+                        No data available
+                    </Typography>
+                </Box>
+                }
                 </Box>
             </Box> 
             </div>
             :
-                <div style={{ margin:'auto',padding:'3rem'}}>
+                <div style={{ margin:'auto',padding:'8rem'}}>
                     <Loader />
                 </div>
             }

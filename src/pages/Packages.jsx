@@ -188,7 +188,7 @@ export default function Packages() {
                
             </div>
             :
-            <div style={{minHeight:'100vh', margin:'auto',padding:'10rem'}}>
+            <div style={{ margin:'auto',padding:'10rem'}}>
                 <Loader />
             </div>
         }
