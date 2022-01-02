@@ -200,6 +200,23 @@ const useStyles = makeStyles((theme)=>({
             fontSize:'1rem',
             marginTop:0
         }
+    },
+    nodata:{
+        width:420,
+        height:300,
+        padding:'20px',
+        color:'#fce290',
+        background:theme.palette.secondary.main,
+        border:theme.palette.secondary.main,
+        borderRadius:'10px',
+      },
+    imgdiv:{
+        margin:'1rem',
+        padding:'2rem'
+    },
+    nodataimg:{
+        width:150,
+        margin:'auto'
     }
  }))
 
@@ -238,40 +255,48 @@ export default function SinglePackage() {
                 
                 <Box className={classes.infoItemBox}>
                     <CBarChart />
-
-                <Box className={classes.gitinfo}>
-                   <Link href={fetchedRepo?.homepage} target="_blank"> 
-                    <Button style={{float:'right',color:'#fff99e'}}>Home</Button>
-                   </Link>                       
-                    <Typography variant='h5'> <PackageIcon/> {fetchedRepo?.name}</Typography>               
-                    <small style={{padding:'10px 0'}}>&lt; &gt; {fetchedRepo?.language}</small>
+                    {fetchedRepo?
+                    <Box className={classes.gitinfo}>
+                    <Link href={fetchedRepo?.homepage} target="_blank"> 
+                        <Button style={{float:'right',color:'#fff99e'}}>Home</Button>
+                    </Link>                       
+                        <Typography variant='h5'> <PackageIcon/> {fetchedRepo?.name}</Typography>               
+                        <small style={{padding:'10px 0'}}>&lt; &gt; {fetchedRepo?.language}</small>
+                        
+                        <Typography className={classes.desc}>{fetchedRepo?.description}</Typography>
+                        <Box className={classes.countsbox}> 
+                            <span className={classes.spanel}>Open issues</span>                     
+                            <Typography> {fetchedRepo?.open_issues}</Typography> 
+                            <span className={classes.spanel}>Network</span>                    
+                            <Typography> {fetchedRepo?.network_count}</Typography>
+                            <span className={classes.spanel}>Subscribers </span>
+                            <Typography> {fetchedRepo?.subscribers_count}</Typography>                
+                        </Box>
                     
-                    <Typography className={classes.desc}>{fetchedRepo?.description}</Typography>
-                    <Box className={classes.countsbox}> 
-                        <span className={classes.spanel}>Open issues</span>                     
-                        <Typography> {fetchedRepo?.open_issues}</Typography> 
-                        <span className={classes.spanel}>Network</span>                    
-                        <Typography> {fetchedRepo?.network_count}</Typography>
-                        <span className={classes.spanel}>Subscribers </span>
-                        <Typography> {fetchedRepo?.subscribers_count}</Typography>                
+                        <Box className={classes.lowerOuterBox}>
+                            <Box className={classes.lowerInnerBox}>
+                                <span className={classes.spanel}>License</span>
+                                <Typography className={classes.license}>{fetchedRepo?.license.spdx_id}</Typography>
+                            </Box>
+                            <Box className={classes.lowerInnerBox}>
+                                <span className={classes.spanel}>Updated at</span>
+                                <Typography className={classes.updatedat}>{timeago.format(fetchedRepo?.updated_at)}</Typography>
+                            </Box>
+                        </Box> 
                     </Box>
-                   
-                    <Box className={classes.lowerOuterBox}>
-                        <Box className={classes.lowerInnerBox}>
-                            <span className={classes.spanel}>License</span>
-                            <Typography className={classes.license}>{fetchedRepo?.license.spdx_id}</Typography>
+                    :
+                    <Box className={classes.nodata}>
+                        <Typography style={{textAlign:'center'}}>No Data available</Typography>
+                        <Box className={classes.imgdiv} >
+                            <img className={classes.nodataimg} src='../.././assets/nodata.svg' alt='no-data' />
                         </Box>
-                        <Box className={classes.lowerInnerBox}>
-                            <span className={classes.spanel}>Updated at</span>
-                            <Typography className={classes.updatedat}>{timeago.format(fetchedRepo?.updated_at)}</Typography>
-                        </Box>
-                    </Box> 
-                </Box>
+                    </Box>
+                    }
                 </Box>
             </Box> 
             </div>
             :
-                <div style={{minHeight:'100vh', margin:'auto',padding:'auto'}}>
+                <div style={{minHeight:'100vh', margin:'auto',padding:'7rem'}}>
                     <Loader />
                 </div>
             }

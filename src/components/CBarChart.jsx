@@ -100,6 +100,23 @@ const useStyles = makeStyles((theme)=>({
     [theme.breakpoints.down(767)]:{
       fontSize:'1rem'
     }
+  },
+  nodata:{
+    width:420,
+    height:300,
+    padding:'20px',
+    color:'#fce290',
+    background:theme.palette.secondary.main,
+    border:theme.palette.secondary.main,
+    borderRadius:'10px',
+  },
+  imgdiv:{
+    margin:'1rem',
+    padding:'2rem'
+  },
+  nodataimg:{
+    width:150,
+    margin:'auto'
   }
 }))
 
@@ -128,6 +145,7 @@ export default function CBarChart() {
 
     return (
         <div>
+          {fetchedRepo ?
           <Box className={classes.statsContainer}>
             <Box className={classes.outerchartbox}>
               <Typography variant='h6' style={{color:'#fce290'}} >Commits</Typography> 
@@ -151,6 +169,14 @@ export default function CBarChart() {
               </Box>
             </Box>
           </Box>
+          :
+          <Box className={classes.nodata}>
+            <Typography>No Data available</Typography>
+            <Box className={classes.imgdiv} >
+              <img className={classes.nodataimg} src='../.././assets/void.svg' alt='no-data' />
+            </Box>
+          </Box>
+          }
         </div>
     )
 }
