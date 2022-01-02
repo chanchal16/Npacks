@@ -63,15 +63,6 @@ const useStyles = makeStyles((theme)=>({
         flexDirection:'row',
         justifyContent:'flex-start',
     },
-    boxes:{
-        // width:'150px',
-        background:theme.palette.secondary.dark,
-        color:theme.palette.secondary.contrastText,
-        border:`2px solid ${theme.palette.secondary.dark}`,
-        borderRadius:'15px',
-        padding:'12px',
-        margin:'1rem'       
-    },
     clipboard:{
         margin:'10px 0',
         
