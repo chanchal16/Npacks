@@ -70,6 +70,7 @@ export default function Home() {
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('bundler');
     const [title,setTitle] = useState('Build tool')
+    const[isLoading,setIsLoading] = useState(true)
 
     const fetchTopicPackages = (value,topictitle) => {
         setTopic(value);
@@ -81,7 +82,9 @@ export default function Home() {
     };
 
     useEffect(() => {
+        setIsLoading(false)
         fetchPackages(topic);
+        
     }, []);
 
     const handleClick= () => {
@@ -117,7 +120,7 @@ export default function Home() {
                 <DialogBox selectedValue={selectedValue} title={title} open={open} onClose={fetchTopicPackages} />
             </Box>
             
-            {!fetchedPackages ?(
+            {isLoading ?(
                 <Box style={{minHeight:'100vh', margin:'auto',padding:'7rem'}}>
                     <Loader />
                 </Box>
