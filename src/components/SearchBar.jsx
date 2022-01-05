@@ -6,12 +6,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme)=>({
    outercontainer:{
-       position:'relative'
+        position:'relative',
    },
     searchInput:{
         width:'60%',
         color:'white',
         padding:'1rem',
+        zIndex:1,
         background:theme.palette.secondary.main,
         border:`2px solid ${theme.palette.secondary.main}`,
         borderRadius:'30px',
@@ -23,12 +24,20 @@ const useStyles = makeStyles((theme)=>({
             // margin:'7% 7% 2%'
         }
     },
+   /*overlay:{
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    background: 'rgba(0, 0, 0, 0.5)',
+   },*/
     popover:{
-        width:'100%',     
+        width:'100%',    
         position:'absolute',
-        zIndex:1,
+        zIndex:12,
         left:0,
-        background:'rgba(0,0,0,0.6)'
+        // background:'rgba(0,0,0,0.6)'
     },
     outerpackbox:{
         // width:'60%',
@@ -71,12 +80,14 @@ export default function SearchBar() {
     = useContext(apiContext)
     const [text,setText] = useState('')
     const [open, setOpen] = useState(false);
+    const[isOverlay,setIsOverlay] = useState(false)
 
     const getSearchResults = (value)=>{
         setText(value)
         fetchPackages(value)
         console.log('callback')
         setOpen(true)
+        setIsOverlay(true)
     }
     const debounceOnChange = useCallback(
         debounce(getSearchResults, 100), []);
@@ -96,7 +107,7 @@ export default function SearchBar() {
         <div className={classes.outercontainer} onClick={handleClickAway}>         
             <input type='search' value={text} placeholder='search packages' className={classes.searchInput} 
             onChange={(e)=>debounceOnChange(e.target.value)} />
-            <Box >
+            <Box className={isOverlay ? classes.overlay : classes.nooverlay}>
                  {open ? 
                     <Box className={classes.popover}>
                     {
