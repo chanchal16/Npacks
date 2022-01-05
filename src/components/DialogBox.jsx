@@ -1,7 +1,6 @@
 import React,{useState,useContext} from 'react'
-import { Box,Link,Button,Typography,List,ListItem,ListItemText,Dialog,DialogTitle} 
+import { Box,Typography,List,ListItem,ListItemText,Dialog,DialogTitle} 
 from '@material-ui/core';
-import { apiContext } from '../contexts/ApiContext';
 import { makeStyles } from '@material-ui/core/styles';
 import topicsData from '../TopicsData/TopicsData';
 
@@ -49,7 +48,7 @@ export default function DialogBox({onClose, selectedValue, title,open}) {
                             return(
                                 <div key={topic.title} className={classes.details}>
                                     <Box style={{borderLeft:'4px solid #d97706',borderRadius:'5%',padding:'2px'}}>
-                                    <Typography style={{fontSize:'17px',color:'#d97706'}} >{topic.title} </Typography>
+                                    <Typography style={{fontSize:'17px',color:'#df9a29'}} >{topic.title} </Typography>
                                     </Box>
                                     <List>
                                     {
