@@ -31,12 +31,13 @@ const useStyles = makeStyles((theme)=>({
         float:'left',
         background:theme.palette.primary.main,
         '&:hover':{
-            backgroundColor:'rgb(252, 211, 77,0.8)'
+            backgroundColor:'#fce290'
         },
     },
     heading:{
         textAlign:'left',
         margin:'0 5rem',
+        color:theme.palette.primary.main,
         ['@media (width:280px)']:{
             margin:'0 1.8rem'
         },
@@ -94,6 +95,18 @@ const useStyles = makeStyles((theme)=>({
             gap:'3rem',
             marginRight:'10rem'
         },
+        ['@media (width:820px)']:{
+            display:'grid',
+            gridTemplateColumns:'auto auto',
+            gap:'3rem',
+            marginRight:'12rem'
+        },
+        ['@media (width:912px)']:{
+            display:'grid',
+            gridTemplateColumns:'auto auto',
+            gap:'3rem',
+            marginRight:'8rem'
+        },
         ['@media (width:1024px)']:{
             display:'grid',
             gridTemplateColumns:'auto auto',
@@ -131,6 +144,12 @@ const useStyles = makeStyles((theme)=>({
         width:280,
         height:'fit-content'
       },
+      ['@media (width:820px)']:{
+          width:330
+      },
+        ['@media (width:912px)']:{
+        width:330
+        },
       ['@media (width:1024px)']:{
         width:400,
         height:'fit-content'

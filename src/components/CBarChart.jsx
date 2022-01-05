@@ -46,9 +46,14 @@ const useStyles = makeStyles((theme)=>({
     ['@media (width:768px)']:{
       width:330
     },
+    ['@media (width:820px)']:{
+      width:360
+    },
+    ['@media (width:912px)']:{
+      width:370
+    },
     ['@media (width:1024px)']:{
-      width:450,
-      
+      width:450,     
     }
   },
 
@@ -69,6 +74,12 @@ const useStyles = makeStyles((theme)=>({
       },
       ['@media (width:768px)']:{
         width:290
+      },
+      ['@media (width:820px)']:{
+        width:360
+      },
+      ['@media (width:912px)']:{
+        width:350
       },
       ['@media (width:1024px)']:{
         width:370
@@ -127,7 +138,7 @@ export default function CBarChart() {
 
     const unix = commits?.map((c) => {
         let date = new Date(c.week * 1000).toLocaleDateString("en-US");
-        console.log("date", date);
+        // console.log("date", date);
         return date;
     });
 

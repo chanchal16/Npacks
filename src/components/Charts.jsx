@@ -77,6 +77,12 @@ const useStyles = makeStyles((theme)=>({
         ['@media (width:768px)']:{
             width:300
         },
+        ['@media (width:820px)']:{
+            width:340
+        },
+        ['@media (width:912px)']:{
+            width:340
+        },
         ['@media (width:1024px)']:{
             width:420
         }
@@ -98,7 +104,13 @@ const useStyles = makeStyles((theme)=>({
         },
         ['@media (width:768px)']:{
             width:270
-        }
+        },
+        ['@media (width:820px)']:{
+            width:300
+        },
+        ['@media (width:912px)']:{
+            width:300
+        },
         // margin:'1rem',
         // background:theme.palette.secondary.dark
         // border:'2px solid #ccc'
