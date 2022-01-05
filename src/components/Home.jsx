@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme)=>({
     backbtn:{
         background:theme.palette.primary.main,
         '&:hover':{
-            backgroundColor:'rgb(252, 211, 77,0.8)'
+            backgroundColor:'#fce290'
         },
         [theme.breakpoints.down('md')]:{
             float:'left'
@@ -57,7 +57,8 @@ const useStyles = makeStyles((theme)=>({
         }
     },
     breadcrums:{
-        fontSize:'12px'
+        fontSize:'12px',
+        color:theme.palette.primary.main
     }
 }))
 
@@ -65,7 +66,7 @@ export default function Home() {
     const classes = useStyles();
     let history = useHistory();
 
-    const {fetchPackages,fetchedPackages} = useContext(apiContext)   
+    const {fetchPackages} = useContext(apiContext)   
     const [topic, setTopic] = useState('bundler');
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('bundler');
@@ -107,12 +108,12 @@ export default function Home() {
 
             </Box>
             <div className={classes.outerbreadcrumdiv}>
-                <Breadcrumbs color='primary' className={classes.breadcrums}>
-                    <Typography variant='h5' color='primary'>Category</Typography>
-                    <Typography  variant='h5' color='primary'>
+                <Breadcrumbs className={classes.breadcrums}>
+                    <Typography variant='h5' >Category</Typography>
+                    <Typography  variant='h5' >
                         {title}
                     </Typography>
-                    <Typography variant='h5' color='primary'>{selectedValue}</Typography>
+                    <Typography variant='h5'>{selectedValue}</Typography>
                 </Breadcrumbs>
             </div>
             
@@ -120,7 +121,7 @@ export default function Home() {
                 <DialogBox selectedValue={selectedValue} title={title} open={open} onClose={fetchTopicPackages} />
             </Box>
             
-            {isLoading ?(
+            {!!isLoading ?(
                 <Box style={{minHeight:'100vh', margin:'auto',padding:'7rem'}}>
                     <Loader />
                 </Box>
