@@ -4,12 +4,18 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
     appbar: {
         color:theme.palette.secondary.dark,
         background:theme.palette.primary.main,
         
     },
+    navtitle:{
+        fontFamily:font,
+        fontWeight:'bold',
+         
+    }
   }));
 
 export default function Nav() {
@@ -17,9 +23,10 @@ export default function Nav() {
     return (
         <div>
             <AppBar position="static" className={classes.appbar}>
-                <Toolbar>             
-                <Typography variant="h6">
-                    N-packs
+                <Toolbar> 
+                    <img src='../.././assets/fireflake.svg' alt='applogo' width={42} />            
+                <Typography variant="h5" className={classes.navtitle}>
+                    Eligo
                 </Typography>
                 </Toolbar>
             </AppBar> 
