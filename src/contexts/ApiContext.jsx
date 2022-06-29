@@ -120,7 +120,7 @@ export default function ApiContextProvider({children}) {
   ) 
 
   
-    const providerItem = {fetchPackages,fetchRepos,getPackDownloads,getCommits,fetchedRepo,fetchedPackages,
+    const providerItem = {fetchPackages,fetchRepos,getPackDownloads,getCommits,fetchedRepo,fetchedPackages,setFetchedPackages,
      downloadscount,weeklyDownloads,monthlyDownloads,commits };
     return (
         <div>
