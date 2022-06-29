@@ -1,10 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from "react-router-dom";
-import SearchBar from '../components/SearchBar';
 import { Box,Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Fade,Zoom} from "react-awesome-reveal";
-
+import SearchModal from '../components/SearchModal';
 
 const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
@@ -24,6 +23,22 @@ const useStyles = makeStyles((theme)=>({
         fontFamily:font,
         color:'#e3d7c1',
         [theme.breakpoints.down('md')]:{
+            fontSize:'15px'
+        }
+    },
+    searchbtn:{
+        width:'60%',
+        color:theme.palette.secondary.light,
+        textAlign:'start',
+        padding:'1rem',
+        zIndex:1,
+        background:theme.palette.secondary.main,
+        border:`2px solid ${theme.palette.secondary.main}`,
+        borderRadius:'30px',
+        margin:'7% 10% 2%',
+        fontSize:'18px',
+        [theme.breakpoints.down(768)]:{
+            width:'80%',
             fontSize:'15px'
         }
     },
@@ -90,7 +105,7 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down(768)]:{
             width:'250px',
             height:'150px',
-            border:`2px solid ${theme.palette.primary.main}`
+            // border:`2px solid ${theme.palette.primary.main}`
         },
         ['@media (width:280px)']: {
             width:'230px',
@@ -153,6 +168,7 @@ const useStyles = makeStyles((theme)=>({
 
 export default function LandingPage() {
     const classes = useStyles();
+    const[openModal,setOpenModal] = useState(false)
     return (
         <div>
             <Box className={classes.topcontainer}>
@@ -169,7 +185,9 @@ export default function LandingPage() {
                 
                 {/**search bar */}
                 <Box className={classes.searchBar}>
-                    <SearchBar />
+                    <button className={classes.searchbtn} onClick={()=>setOpenModal(true)} >
+                    Search packages</button>
+                    <SearchModal openModal={openModal} setOpenModal={setOpenModal} />
                 </Box>
 
                 <Link to='/home' style={{textDecoration:'none'}}>
@@ -182,14 +200,14 @@ export default function LandingPage() {
             {/**packagaes section */}
             <Box className={classes.packagelist} >         
                 <Box className={classes.listheading}>
-                    <Fade direction='left'>
+                    <Fade direction='left' triggerOnce='true'>
                         <p>Select from a number of packages </p>
                     </Fade>
                 </Box>          
-                <Zoom>
+                <Zoom triggerOnce='true' >
                     <Box className={classes.screenshot}>             
                         <Box className={classes.upperscreenshot}>
-                            <img src='../.././assets/list.png' alt='packageslist' 
+                            <img src='../.././assets/packages.svg' alt='packageslist' 
                             className={classes.images} />
                         </Box>           
                     </Box> 
@@ -198,15 +216,15 @@ export default function LandingPage() {
 
             {/**category section */}
             <Box className={classes.categorybox} >
-                <Zoom>
+                <Zoom triggerOnce='true'>
                     <Box className={classes.screenshot}>
                         <Box className={classes.upperscreenshot}>
-                        <img src='../.././assets/catgories.png' alt='topics' className={classes.images} />
+                        <img src='../.././assets/task_list.svg' alt='topics' className={classes.images} />
                         </Box>
                     </Box> 
                 </Zoom> 
                 <Box className={classes.listheading}>
-                    <Fade direction='right'>
+                    <Fade direction='right' triggerOnce='true'>
                         <p style={{color:'#df9a29'}}>Browse through a wide range of categories.</p>
                     </Fade>
                 </Box>                
@@ -214,12 +232,12 @@ export default function LandingPage() {
 
             {/**charts section */}
             <Box className={classes.metricscontainer} >
-                <Fade>
+                <Fade triggerOnce='true'>
                     <p >Learn about the packages through their statistics and 
                     metrics.</p>
                 </Fade>
 
-                <Fade delay={300} cascade>
+                <Fade delay={300} cascade triggerOnce='true'>
                     <Box className={classes.chartscontainer}>
                             <Box className={classes.charts}>
                                 <img src='../.././assets/charts.png' alt='charts' 
