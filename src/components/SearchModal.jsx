@@ -1,22 +1,20 @@
 import React,{useState,useContext,useCallback} from 'react'
 import { apiContext } from '../contexts/ApiContext'
 import { Link } from "react-router-dom";
-import { Box,Typography } from '@material-ui/core';
+import { Box,Dialog,Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme)=>({
-   outercontainer:{
-        position:'relative',
-   },
+   
     searchInput:{
-        width:'60%',
+        width:'90%',
         color:'white',
         padding:'1rem',
         zIndex:1,
         background:theme.palette.secondary.main,
         border:`2px solid ${theme.palette.secondary.main}`,
         borderRadius:'30px',
-        margin:'7% 10% 2%',
+        margin:'1rem auto',
         fontSize:'18px',
         [theme.breakpoints.down(768)]:{
             width:'80%',
@@ -24,28 +22,19 @@ const useStyles = makeStyles((theme)=>({
             // margin:'7% 7% 2%'
         }
     },
-   /*overlay:{
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.5)',
-   },*/
     popover:{
-        width:'100%',    
-        position:'absolute',
+        width:'100%',
+        overflow: 'auto',    
         zIndex:12,
         left:0,
-        // background:'rgba(0,0,0,0.6)'
     },
     outerpackbox:{
         // width:'60%',
        margin:'10px'
     },
     packlist:{
-       fontSize:'18px',
-        width:'55%',
+       fontSize:'15px',
+        width:'80%',
         padding:'1rem',
         margin:'auto',
         background:theme.palette.secondary.main,
@@ -59,6 +48,17 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down(768)]:{
             width:'70%'
         }
+    },
+    nodataDiv:{
+        display:'flex',
+        flexDirection:'column',
+        alignItems:'center',
+        margin:'1rem',
+        color:theme.palette.secondary.main
+    },
+    nodataimg:{
+        width:'7rem',
+        margin:'1rem'
     }
 }))
 
@@ -74,20 +74,15 @@ function debounce(func, wait) {
   };
 }
 
-export default function SearchBar() {
+export default function SearchModal({openModal,setOpenModal}) {
     const classes = useStyles();
-    const {fetchedPackages,fetchPackages,fetchRepos,getPackDownloads,getCommits} 
+    const {fetchedPackages,setFetchedPackages,fetchPackages,fetchRepos,getPackDownloads,getCommits} 
     = useContext(apiContext)
     const [text,setText] = useState('')
-    const [open, setOpen] = useState(false);
-    const[isOverlay,setIsOverlay] = useState(false)
 
     const getSearchResults = (value)=>{
         setText(value)
         fetchPackages(value)
-        console.log('callback')
-        setOpen(true)
-        setIsOverlay(true)
     }
     const debounceOnChange = useCallback(
         debounce(getSearchResults, 100), []);
@@ -99,19 +94,20 @@ export default function SearchBar() {
     }
     
     const handleClickAway = () => {
-        setOpen(false);
         setText('')
+        setOpenModal(false)
+        setFetchedPackages([])
     };
     
     return (
-        <div className={classes.outercontainer} onClick={handleClickAway}>         
+        <Dialog className='search-container' onClose={handleClickAway} open={openModal}>         
             <input type='search' value={text} placeholder='search packages' className={classes.searchInput} 
             onChange={(e)=>debounceOnChange(e.target.value)} />
-            <Box className={isOverlay ? classes.overlay : classes.nooverlay}>
-                 {open ? 
-                    <Box className={classes.popover}>
+                <Box className={classes.popover}>
                     {
-                        fetchedPackages?.map(fp=>{
+                        fetchedPackages.length >0?
+                        (<>
+                        {fetchedPackages?.map(fp=>{
                             const reponame = fp.package.links.repository
                             const pname = fp.package.name
                             return(
@@ -127,10 +123,19 @@ export default function SearchBar() {
                                 </div>
                             )
                         })
+                        }
+                        </>):(
+                        <Box className={classes.nodataDiv}>
+                            <Typography variant='h5'>
+                                no data available
+                            </Typography>
+                            <Box className={classes.imgdiv} >
+                                <img className={classes.nodataimg} src='../.././assets/nodata.svg' alt='no-data' />
+                            </Box>
+                        </Box>
+                    )
                     }
-                    </Box> 
-                 : null}  
-            </Box>
-        </div>
+                </Box> 
+        </Dialog>
     )
 }
