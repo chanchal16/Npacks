@@ -66,26 +66,22 @@ export default function Home() {
     const classes = useStyles();
     let history = useHistory();
 
-    const {fetchPackages} = useContext(apiContext)   
+    const {fetchPackages,fetchedPackages} = useContext(apiContext)   
     const [topic, setTopic] = useState('bundler');
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState('bundler');
     const [title,setTitle] = useState('Build tool')
-    const[isLoading,setIsLoading] = useState(true)
 
     const fetchTopicPackages = (value,topictitle) => {
         setTopic(value);
-        console.log("topic", topic);
         fetchPackages(value);
         setOpen(false);
         setSelectedValue(value);
-        setTitle(topictitle)
+        setTitle(topictitle)     
     };
 
     useEffect(() => {
-        setIsLoading(false)
-        fetchPackages(topic);
-        
+        fetchPackages(topic);      
     }, []);
 
     const handleClick= () => {
@@ -121,7 +117,7 @@ export default function Home() {
                 <DialogBox selectedValue={selectedValue} title={title} open={open} onClose={fetchTopicPackages} />
             </Box>
             
-            {!!isLoading ?(
+            {fetchedPackages.length===0 ?(
                 <Box style={{minHeight:'100vh', margin:'auto',padding:'7rem'}}>
                     <Loader />
                 </Box>
