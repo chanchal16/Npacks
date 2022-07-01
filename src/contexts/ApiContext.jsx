@@ -29,13 +29,12 @@ export default function ApiContextProvider({children}) {
     }, []);
 
     const packs = fetchedPackages.map((p) => p.package.name);
-  // console.log("names", packs);
 
   const getDownloads = async () => {
     let packslist = [];
-    packs.map((packname) => packslist.push(packname));
+    packs.map((packname) => packslist?.push(packname));
 
-    const promiseOfPacks = packslist.map(async (packname) => {
+    const promiseOfPacks = packslist?.map(async (packname) => {
       let packages = await axios.get(
         `https://api.npmjs.org/downloads/point/last-week/${packname}`
       );
@@ -44,12 +43,11 @@ export default function ApiContextProvider({children}) {
     });
     let alldownloads = await Promise.all(promiseOfPacks);
     setDownloadsCount(alldownloads);
-    // console.log('d',alldownloads)
   };
 
   const fetchRepos = useCallback(
     async(reponame) => {
-      const arr = reponame.split("");
+      const arr = reponame?.split("");
       console.log("array", arr);
       arr.splice(8, 0, "api.");
       arr.splice(19, 0, "/repos");
@@ -78,7 +76,7 @@ export default function ApiContextProvider({children}) {
   const getCommits=useCallback(
     
     async(rname)=>{
-      const carr = rname.split("");
+      const carr = rname?.split("");
       console.log("array", carr);
       carr.splice(8, 0, "api.");
       carr.splice(19, 0, "/repos");
