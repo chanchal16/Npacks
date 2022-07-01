@@ -207,7 +207,7 @@ export default function LandingPage() {
                 <Zoom triggerOnce='true' >
                     <Box className={classes.screenshot}>             
                         <Box className={classes.upperscreenshot}>
-                            <img src='../.././assets/packages.svg' alt='packageslist' 
+                            <img src='../.././assets/list.png' alt='packageslist' 
                             className={classes.images} />
                         </Box>           
                     </Box> 
@@ -219,7 +219,7 @@ export default function LandingPage() {
                 <Zoom triggerOnce='true'>
                     <Box className={classes.screenshot}>
                         <Box className={classes.upperscreenshot}>
-                        <img src='../.././assets/task_list.svg' alt='topics' className={classes.images} />
+                        <img src='../.././assets/catgories.png' alt='topics' className={classes.images} />
                         </Box>
                     </Box> 
                 </Zoom> 
