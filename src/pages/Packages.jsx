@@ -1,4 +1,4 @@
-import React,{useContext,useState} from 'react'
+import React,{useContext,useState,useEffect} from 'react'
 import { apiContext } from "../contexts/ApiContext";
 import {Card,CardContent,CardActions,Grid,Typography,Box,Link,Snackbar,Slide} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,7 +6,7 @@ import * as timeago from "timeago.js";
 import {CopyIcon} from '@primer/octicons-react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Link as LINK } from "react-router-dom";
-import Loader from '../components/Loader';
+
 
 const useStyles = makeStyles((theme)=>({
     outercontainer:{
@@ -69,10 +69,12 @@ const useStyles = makeStyles((theme)=>({
     },
     command:{
         // background:theme.palette.secondary.dark,
-        background:'#e4ddd0',
-        color:theme.palette.secondary.dark,
+        background:'#444',
+        color:'#fff',
         // color:'#e4ddd0',
         border:`1px solid black`,
+        borderRadius:'3px',
+        padding:'4px'
        
     },
     wrapIcon:{
@@ -122,6 +124,10 @@ export default function Packages() {
         getCommits(reponame)
         
     }
+
+    useEffect(() => {
+        fetchData()       
+    }, [])
 
     return (
         
