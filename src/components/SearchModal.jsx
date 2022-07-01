@@ -1,4 +1,4 @@
-import React,{useState,useContext,useCallback} from 'react'
+import React,{useState,useContext,useCallback,useEffect} from 'react'
 import { apiContext } from '../contexts/ApiContext'
 import { Link } from "react-router-dom";
 import { Box,Dialog,Typography } from '@material-ui/core';
@@ -80,13 +80,19 @@ export default function SearchModal({openModal,setOpenModal}) {
     = useContext(apiContext)
     const [text,setText] = useState('')
 
+    useEffect(() => {
+        setFetchedPackages([])
+    }, [])
+    
+    // search for the packages
     const getSearchResults = (value)=>{
         setText(value)
         fetchPackages(value)
     }
     const debounceOnChange = useCallback(
         debounce(getSearchResults, 100), []);
-
+        
+    // fetch data when clicked on package through search
     const fetchData = (reponame,pname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
