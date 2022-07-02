@@ -73,7 +73,6 @@ const useStyles = makeStyles((theme)=>({
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-between',
-        // background:'#5d4a32',
         padding:'3rem 1rem',
         [theme.breakpoints.down(768)]:{
             flexDirection:'column',
@@ -82,7 +81,6 @@ const useStyles = makeStyles((theme)=>({
     },
     listheading:{
         margin:'auto',
-        // width: '50%',
         fontSize:'2.1rem',
         [theme.breakpoints.down(768)]:{
             fontSize:'1.2rem',
@@ -105,7 +103,6 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down(768)]:{
             width:'250px',
             height:'150px',
-            // border:`2px solid ${theme.palette.primary.main}`
         },
         ['@media (width:280px)']: {
             width:'230px',
@@ -190,7 +187,7 @@ export default function LandingPage() {
                     <SearchModal openModal={openModal} setOpenModal={setOpenModal} />
                 </Box>
 
-                <Link to='/home' style={{textDecoration:'none'}}>
+                <Link to='/packages' style={{textDecoration:'none'}}>
                     <Button variant="outlined" color="primary" style={{margin:'5rem auto 8rem'}}>
                         Explore
                     </Button>
@@ -239,14 +236,14 @@ export default function LandingPage() {
 
                 <Fade delay={300} cascade triggerOnce='true'>
                     <Box className={classes.chartscontainer}>
-                            <Box className={classes.charts}>
-                                <img src='../.././assets/charts.png' alt='charts' 
-                                className={classes.images} />
-                            </Box>
-                            <Box className={classes.charts}>
-                                <img src='../.././assets/vue.png' alt='charts' 
-                                className={classes.images} />
-                            </Box>
+                        <Box className={classes.charts}>
+                            <img src='../.././assets/react.png' alt='charts' 
+                            className={classes.images} />
+                        </Box>
+                        <Box className={classes.charts}>
+                            <img src='../.././assets/tailwind.png' alt='charts' 
+                            className={classes.images} />
+                        </Box>
                     </Box> 
                 </Fade>       
             </Box>

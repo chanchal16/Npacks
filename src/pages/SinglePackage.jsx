@@ -5,7 +5,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { apiContext } from '../contexts/ApiContext'
 import Charts from '../components/Charts';
 import * as timeago from "timeago.js";
-import { useHistory } from "react-router-dom";
+import { useHistory,useParams } from "react-router-dom";
 import CBarChart from '../components/CBarChart';
 import Loader from '../components/Loader';
 import { PackageIcon,HomeFillIcon,MarkGithubIcon } from '@primer/octicons-react';
@@ -36,10 +36,13 @@ const useStyles = makeStyles((theme)=>({
         },
     },
     heading:{
-        display:'flex',
+        display:'grid',
+        gridTemplateColumns:'60% auto',
         justifyContent:'space-between',
         textAlign:'left',
         margin:'0 5rem',
+        paddingBottom: '2rem',
+        borderBottom: '1px solid #df9a29',
         color:theme.palette.primary.main,
         ['@media (width:280px)']:{
             margin:'0 1.8rem'
@@ -48,7 +51,8 @@ const useStyles = makeStyles((theme)=>({
             margin:'2rem 3rem 0'
         },
         [theme.breakpoints.down(768)]:{
-            margin:'0 2rem'
+            margin:'0 2rem',
+            flexDirection:'column'
         },
         [theme.breakpoints.between(768,1025)]:{
             margin:0
@@ -58,7 +62,7 @@ const useStyles = makeStyles((theme)=>({
     linksection:{
         display: 'flex',
         flexDirection: 'column',
-        gap: '10px'
+        gap: '10px',
     },
     infocontainer:{
         display:'flex',
@@ -86,7 +90,6 @@ const useStyles = makeStyles((theme)=>({
     },
     infoItemBox:{
         margin:'1.3rem 0',
-        // padding:'1rem'
         width:'90%',
         display:'inline-flex',
         flexDirection:'row',
@@ -94,9 +97,7 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down(767)]:{
             display:'grid',
             gridTemplateColumns:'auto',
-            gap:'1rem'
-            // flexDirection:'column', 
-                    
+            gap:'1rem'                   
         },
         ['@media (width:768px)']:{
             display:'grid',
@@ -134,7 +135,6 @@ const useStyles = makeStyles((theme)=>({
      padding:'22px',
      [theme.breakpoints.down(767)]:{
          width:280,        
-        //  height:250,
          marginTop:'1rem'
      },
      ['@media (width:280px)']:{
@@ -143,7 +143,6 @@ const useStyles = makeStyles((theme)=>({
      },
      ['@media (width:320px)']:{
         width:220,
-        // height:280
      },
      ['@media (width:540px)']:{
         width:402,
@@ -173,7 +172,6 @@ const useStyles = makeStyles((theme)=>({
          gridTemplateColumns: '120px auto',
          gridTemplateRows: 'repeat(3, 20px)',
          gap: '4px 12px',
-         // margin:'15px 0'
     },
     spanel:{
         color:theme.palette.secondary.contrastText
@@ -183,10 +181,7 @@ const useStyles = makeStyles((theme)=>({
         display:'flex',
         flexDirection:'row',
         justifyContent:'flex-start',
-        // margin:'1rem',
-        bottom:0,
-        //  position:'absolute'
-        
+        bottom:0,      
     },
     lowerInnerBox:{
         margin:'2rem 1rem 0',
@@ -251,14 +246,14 @@ const useStyles = makeStyles((theme)=>({
 export default function SinglePackage() {
     const classes = useStyles();
     let history = useHistory();
-
+    const params = useParams();
     const {fetchedRepo,weeklyDownloads,fetchedPackages} = useContext(apiContext)
 
     // get current package
-    const fetchedPackage = fetchedPackages.find(pack=>pack?.package?.name === fetchedRepo?.name)
+    const fetchedPackage = fetchedPackages.find(pack=>pack?.package?.name === params?.name)
     
     function handleBackClick() {
-        history.push("/home");
+        history.push("/packages");
     }
 
     return (
@@ -298,19 +293,13 @@ export default function SinglePackage() {
                         </Link>
                     </Box> 
                     <Box className={classes.publishbox}>
-                        <Typography variant='h6' style={{color:'#5d5d5d'}}>Last published: {timeago.format(fetchedPackage?.package?.date)}</Typography>
+                        <Typography variant='h6' style={{color:'#5d5d5d',alignSelf:'end'}}>Last published: {timeago.format(fetchedPackage?.package?.date)}</Typography>
                     </Box>
-                </section>
-                
-                
-            </Box>
-            
-            
+                </section>   
+            </Box>           
             
             <Box className={classes.infocontainer}>
-                {/* <Box > */}
-                    <Charts />
-                {/* </Box> */}
+                <Charts />
                 
                 <Box className={classes.infoItemBox}>
                     <CBarChart />
