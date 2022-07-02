@@ -9,6 +9,7 @@ import Home from './components/Home'
 import SinglePackage from './pages/SinglePackage'
 import LandingPage from './pages/LandingPage'
 import Footer from './components/Footer'
+import PageNotFound from './pages/PageNotFound'
 
 function App() {
   
@@ -23,8 +24,9 @@ function App() {
             <Route exact path='/'>
             <LandingPage />
             </Route>
-            <Route path='/home' component={Home }/> 
-            <Route path='/packages/:name' component={SinglePackage } />         
+            <Route exact path='/packages' component={Home }/> 
+            <Route path='/packages/:name' component={SinglePackage } /> 
+            <Route path='*' component={PageNotFound}/>        
         </Switch>
         </div>
         <Footer />
