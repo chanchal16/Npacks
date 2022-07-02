@@ -10,6 +10,8 @@ import CBarChart from '../components/CBarChart';
 import Loader from '../components/Loader';
 import { PackageIcon,HomeFillIcon,MarkGithubIcon } from '@primer/octicons-react';
 import Clipboard from '../components/Clipboard';
+import images from '../../public/images';
+
 
 const useStyles = makeStyles((theme)=>({
     pagecontainer:{
@@ -336,7 +338,7 @@ export default function SinglePackage() {
                     <Box className={classes.nodata}>
                         <Typography style={{textAlign:'center'}}>No Data available</Typography>
                         <Box className={classes.imgdiv} >
-                            <img className={classes.nodataimg} src='../.././assets/nodata.svg' alt='no-data' />
+                            <img className={classes.nodataimg} src={images.nodata} alt='no-data' />
                         </Box>
                     </Box>
                     }

@@ -4,6 +4,7 @@ import { Box,Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Fade,Zoom} from "react-awesome-reveal";
 import SearchModal from '../components/SearchModal';
+import images from '../../public/images'
 
 const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
@@ -204,7 +205,7 @@ export default function LandingPage() {
                 <Zoom triggerOnce='true' >
                     <Box className={classes.screenshot}>             
                         <Box className={classes.upperscreenshot}>
-                            <img src='../.././assets/list.png' alt='packageslist' 
+                            <img src={images.list} alt='packageslist' 
                             className={classes.images} />
                         </Box>           
                     </Box> 
@@ -216,7 +217,7 @@ export default function LandingPage() {
                 <Zoom triggerOnce='true'>
                     <Box className={classes.screenshot}>
                         <Box className={classes.upperscreenshot}>
-                        <img src='../.././assets/catgories.png' alt='topics' className={classes.images} />
+                        <img src={images.categories} alt='topics' className={classes.images} />
                         </Box>
                     </Box> 
                 </Zoom> 
@@ -237,11 +238,11 @@ export default function LandingPage() {
                 <Fade delay={300} cascade triggerOnce='true'>
                     <Box className={classes.chartscontainer}>
                         <Box className={classes.charts}>
-                            <img src='../.././assets/react.png' alt='charts' 
+                            <img src={images.react} alt='charts' 
                             className={classes.images} />
                         </Box>
                         <Box className={classes.charts}>
-                            <img src='../.././assets/tailwind.png' alt='charts' 
+                            <img src={images.tailwind} alt='charts' 
                             className={classes.images} />
                         </Box>
                     </Box> 

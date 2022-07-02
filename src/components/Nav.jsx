@@ -4,6 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import images from '../../public/images';
 
 const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
@@ -27,7 +28,7 @@ export default function Nav() {
         <div>
             <AppBar position="static" className={classes.appbar}>
                 <Toolbar> 
-                    <img src='../.././assets/fireflake.svg' alt='applogo' width={42} />            
+                    <img src={images.fireflake} alt='applogo' width={42} />            
                <Link to='/' className={classes.navtitle}><Typography variant="h5" >
                     Eligo
                 </Typography></Link> 

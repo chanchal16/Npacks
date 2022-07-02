@@ -1,7 +1,7 @@
 import React from 'react';
-import pagenotfound from '../../assets/pagenotfound.svg';
 import { Box,Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import images from '../../public/images';
 
 const useStyles = makeStyles((theme)=>({
     pagecontainer:{
@@ -22,7 +22,7 @@ export default function PageNotFound() {
     const classes = useStyles();
   return (
     <Box className={classes.pagecontainer}>
-        <img src={pagenotfound} alt='page-not-fouond' className={classes.pageimage} />
+        <img src={images.pagenotfound} alt='page-not-fouond' className={classes.pageimage} />
         <Typography variant='h5' style={{color:'#5d5d5d'}}>Oops! Page not found</Typography> 
     </Box>
   )

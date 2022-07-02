@@ -1,10 +1,12 @@
-import React,{useContext,useEffect} from 'react'
+import React,{useContext} from 'react'
 import { apiContext } from '../contexts/ApiContext';
 import {Box,Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Chart as ChartJS,CategoryScale,LinearScale, BarElement,Title,Tooltip} from "chart.js";
 import { Bar } from "react-chartjs-2";
 import {RepoForkedIcon,EyeIcon,StarIcon} from '@primer/octicons-react'
+import images from '../../public/images';
+
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -180,7 +182,7 @@ export default function CBarChart() {
           <Box className={classes.nodata}>
             <Typography>No Data available</Typography>
             <Box className={classes.imgdiv} >
-              <img className={classes.nodataimg} src='../.././assets/void.svg' alt='no-data' />
+              <img className={classes.nodataimg} src={images.empty} alt='no-data' /> 
             </Box>
           </Box>
           }
