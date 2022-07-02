@@ -1,5 +1,4 @@
 import React,{useContext,useEffect} from 'react'
-// import { BarChart, Bar, YAxis, XAxis, CartesianGrid, Tooltip, ResponsiveContainer} from "recharts";
 import { apiContext } from '../contexts/ApiContext';
 import {Box,Typography} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,7 +26,6 @@ const useStyles = makeStyles((theme)=>({
   statsContainer:{
     width:460,
     paddingTop:'12px',
-    // margin:'2rem',
     background:theme.palette.secondary.main,
     border:theme.palette.secondary.main,
     borderRadius:'10px',
@@ -134,11 +132,9 @@ const useStyles = makeStyles((theme)=>({
 export default function CBarChart() {
   const classes = useStyles();
     const{commits,fetchedRepo} = useContext(apiContext)   
-    console.log('commits',commits)
 
     const unix = commits?.map((c) => {
         let date = new Date(c.week * 1000).toLocaleDateString("en-US");
-        // console.log("date", date);
         return date;
     });
 

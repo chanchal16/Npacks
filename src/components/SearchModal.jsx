@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.down(768)]:{
             width:'80%',
             fontSize:'15px'
-            // margin:'7% 7% 2%'
         }
     },
     popover:{
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme)=>({
         left:0,
     },
     outerpackbox:{
-        // width:'60%',
        margin:'10px'
     },
     packlist:{
@@ -43,7 +41,6 @@ const useStyles = makeStyles((theme)=>({
         '&:hover':{
             border:`1.5px solid ${theme.palette.primary.main}`,
             borderRadius:'15px',
-            // backgroundColor:'rgb(252, 211, 77,0.1)'
         },
         [theme.breakpoints.down(768)]:{
             width:'70%'
