@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const font = "'Nunito', sans-serif ";
 const useStyles = makeStyles((theme)=>({
@@ -14,6 +15,8 @@ const useStyles = makeStyles((theme)=>({
     navtitle:{
         fontFamily:font,
         fontWeight:'bold',
+        color:theme.palette.secondary.dark,
+        textDecoration:'none'
          
     }
   }));
@@ -25,9 +28,9 @@ export default function Nav() {
             <AppBar position="static" className={classes.appbar}>
                 <Toolbar> 
                     <img src='../.././assets/fireflake.svg' alt='applogo' width={42} />            
-                <Typography variant="h5" className={classes.navtitle}>
+               <Link to='/' className={classes.navtitle}><Typography variant="h5" >
                     Eligo
-                </Typography>
+                </Typography></Link> 
                 </Toolbar>
             </AppBar> 
         </div>
