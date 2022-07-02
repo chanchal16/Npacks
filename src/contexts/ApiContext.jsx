@@ -26,11 +26,11 @@ export default function ApiContextProvider({children}) {
         getDownloads();
     }, []);
 
-    const packs = fetchedPackages.map((p) => p.package.name);
+    const packs = fetchedPackages?.map((p) => p.package.name);
 
   const getDownloads = async () => {
     let packslist = [];
-    packs.map((packname) => packslist?.push(packname));
+    packs?.map((packname) => packslist?.push(packname));
 
     const promiseOfPacks = packslist?.map(async (packname) => {
       let packages = await axios.get(
@@ -45,11 +45,9 @@ export default function ApiContextProvider({children}) {
   const fetchRepos = useCallback(
     async(reponame) => {
       const arr = reponame?.split("");
-      console.log("array", arr);
-      arr.splice(8, 0, "api.");
-      arr.splice(19, 0, "/repos");
-      const gitapi = arr.join("");
-      console.log(gitapi);
+      arr?.splice(8, 0, "api.");
+      arr?.splice(19, 0, "/repos");
+      const gitapi = arr?.join("");
       await axios
         .get(gitapi, {
           headers: {
@@ -68,15 +66,14 @@ export default function ApiContextProvider({children}) {
     [],
   )
 
-  const getCommits=useCallback(
-    
+  const getCommits=useCallback(   
     async(rname)=>{
       const carr = rname?.split("");
       carr?.splice(8, 0, "api.");
       carr?.splice(19, 0, "/repos");
-      const api = carr.join("")
+      const api = carr?.join("")
       const apiText = "/stats/commit_activity";
-       const commits_API = api.concat(apiText)
+       const commits_API = api?.concat(apiText)
       await axios.get(commits_API, {
         headers: {
           Accept: "application/vnd.github.v3+json"
@@ -91,7 +88,7 @@ export default function ApiContextProvider({children}) {
     [],
   )
   
-  const getPackDownloads =useCallback(
+  const getPackDownloads = useCallback(
     async(pname)=>{
       await axios.get(`https://api.npmjs.org/downloads/range/last-week/${pname}`)
       .then((res)=>{
