@@ -3,6 +3,7 @@ import { apiContext } from '../contexts/ApiContext'
 import { Link } from "react-router-dom";
 import { Box,Dialog,Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import images from '../../public/images';
 
 const useStyles = makeStyles((theme)=>({
    
@@ -133,7 +134,7 @@ export default function SearchModal({openModal,setOpenModal}) {
                                 no data available
                             </Typography>
                             <Box className={classes.imgdiv} >
-                                <img className={classes.nodataimg} src='../.././assets/nodata.svg' alt='no-data' />
+                                <img className={classes.nodataimg} src={images.nodata} alt='no-data' />
                             </Box>
                         </Box>
                     )
