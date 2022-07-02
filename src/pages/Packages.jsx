@@ -1,11 +1,10 @@
-import React,{useContext,useState,useEffect} from 'react'
+import React,{useContext,useEffect} from 'react'
 import { apiContext } from "../contexts/ApiContext";
-import {Card,CardContent,CardActions,Grid,Typography,Box,Link,Snackbar,Slide} from '@material-ui/core'
+import {Card,CardContent,CardActions,Typography,Box,Link,Slide} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import * as timeago from "timeago.js";
-import {CopyIcon} from '@primer/octicons-react'
-import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Link as LINK } from "react-router-dom";
+import Clipboard from '../components/Clipboard';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -17,8 +16,6 @@ const useStyles = makeStyles((theme)=>({
         flexWrap:'wrap',
     },
    cardContainer:{
-        // display:'flex',
-        // flexDirection:'row',
         margin:'1rem',
         textAlign:'left'
         
@@ -68,10 +65,8 @@ const useStyles = makeStyles((theme)=>({
         
     },
     command:{
-        // background:theme.palette.secondary.dark,
         background:'#444',
         color:'#fff',
-        // color:'#e4ddd0',
         border:`1px solid black`,
         borderRadius:'3px',
         padding:'4px'
@@ -102,27 +97,14 @@ const useStyles = makeStyles((theme)=>({
     }
 }))
 
-function TransitionRight(props) {
-    return <Slide {...props} direction="right" />;
-}
-
 export default function Packages() {
     const classes = useStyles();
     const { fetchedPackages,fetchRepos,getPackDownloads,getCommits } = useContext(apiContext);
-    const [copySuccess, setCopySuccess] = useState(false);
-    const [open, setOpen] = useState(false);
-
-    const handleCopy = (props)=>{
-        setCopySuccess(!copySuccess);
-        setOpen(true);
-        return <Slide {...props} direction="right"/>
-    }
 
     const fetchData = (reponame,pname)=>{
         fetchRepos(reponame)
         getPackDownloads(pname)
-        getCommits(reponame)
-        
+        getCommits(reponame)      
     }
 
     useEffect(() => {
@@ -146,23 +128,7 @@ export default function Packages() {
                                         {pack.package.name}
                                         &nbsp;&nbsp;<small style={{color:'#5d5d5d'}}>v({pack.package.version})</small>
                                     </Typography> 
-                                        <div className={classes.clipboard}>
-                                            <CopyToClipboard text={`npm install ${pack.package.name}`}
-                                            onCopy={handleCopy}> 
-                                                <Box className={classes.wrapIcon}>
-                                                <span className={classes.command} >{`npm install ${pack.package.name}`}</span> 
-                                                <div className={classes.iconbtn}><CopyIcon fill='secondary'  /></div>
-                                                <Snackbar
-                                                    anchorOrigin={{vertical:'top',horizontal:'right'}}
-                                                    open={open}
-                                                    onClose={()=>setOpen(false)}
-                                                    autoHideDuration={5000}
-                                                    TransitionComponent={Slide}
-                                                    message="Copied successfully!"                            
-                                                />
-                                                </Box>                                                                              
-                                            </CopyToClipboard>
-                                        </div>
+                                        <Clipboard packName={pack.package.name}/>
                                     </Box> 
                                     <LINK to={`/packages/${pack.package.name}`} key={pack.package.name} 
                             style={{textDecoration:'none'}} onClick={()=>fetchData(reponame,pname)}>                                                          
@@ -176,29 +142,27 @@ export default function Packages() {
                                 
                             
                                 <CardActions className={classes.actionbtns}>
-                                <Box className={classes.publishbox}>
-                                    <p>Last published:</p>&nbsp;
-                                    <Typography variant='h6' > {timeago.format(pack.package.date)}</Typography>
+                                    <Box className={classes.publishbox}>
+                                        <p>Last published:</p>&nbsp;
+                                        <Typography variant='h6' > {timeago.format(pack.package.date)}</Typography>
                                     </Box>
                                     <Box style={{display:'inline-grid',gridTemplateColumns:'auto auto auto',gap:'8px'}} >
-                                    <Link href={pack.package.links.homepage} size="small" >
-                                        Home
-                                    </Link>
-                                    <Link href={pack.package.links.npm} size="small" >
-                                        npm
-                                    </Link>
-                                    <Link href={pack.package.links.repository} size="small" >
-                                        GitHub
-                                    </Link>
+                                        <Link href={pack.package.links.homepage} size="small" target='_blank'>
+                                            Home
+                                        </Link>
+                                        <Link href={pack.package.links.npm} size="small" target='_blank'>
+                                            npm
+                                        </Link>
+                                        <Link href={pack.package.links.repository} size="small" target='_blank'>
+                                            GitHub
+                                        </Link>
                                     </Box>                                          
                                 </CardActions>
                             </Card> 
-                            </div>
-                            
+                            </div>                            
                         )
                     })
-                }
-               
+                }               
             </div>
     )
 }
