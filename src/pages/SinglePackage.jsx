@@ -8,12 +8,13 @@ import * as timeago from "timeago.js";
 import { useHistory } from "react-router-dom";
 import CBarChart from '../components/CBarChart';
 import Loader from '../components/Loader';
-import { PackageIcon } from '@primer/octicons-react';
+import { PackageIcon,HomeFillIcon,MarkGithubIcon } from '@primer/octicons-react';
+import Clipboard from '../components/Clipboard';
 
 const useStyles = makeStyles((theme)=>({
     pagecontainer:{
         padding:'1rem',
-        margin:'50px',
+        margin:'0 3rem 3.2rem',
         height:'100%',
         [theme.breakpoints.down(767)]:{
             padding:0,
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme)=>({
         },
     },
     heading:{
+        display:'flex',
+        justifyContent:'space-between',
         textAlign:'left',
         margin:'0 5rem',
         color:theme.palette.primary.main,
@@ -50,6 +53,12 @@ const useStyles = makeStyles((theme)=>({
         [theme.breakpoints.between(768,1025)]:{
             margin:0
         }
+    },
+    // links
+    linksection:{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px'
     },
     infocontainer:{
         display:'flex',
@@ -243,15 +252,17 @@ export default function SinglePackage() {
     const classes = useStyles();
     let history = useHistory();
 
-    const {fetchedRepo,weeklyDownloads} = useContext(apiContext)
-    console.log('repo',fetchedRepo)
+    const {fetchedRepo,weeklyDownloads,fetchedPackages} = useContext(apiContext)
+
+    // get current package
+    const fetchedPackage = fetchedPackages.find(pack=>pack?.package?.name === fetchedRepo?.name)
     
     function handleBackClick() {
         history.push("/home");
     }
 
     return (
-        <div >
+        <section >
             <Box className={classes.backbuttonbox}>
             <IconButton color='secondary' size="small" className={classes.backbtn} onClick={handleBackClick}>
                     <ArrowBackIcon />
@@ -263,10 +274,39 @@ export default function SinglePackage() {
             <div className={classes.pagecontainer}>
             
             <Box className={classes.heading}>
-                <h3 style={{color:'#fcce28',margin:0}}>{fetchedRepo?.name}</h3>
-                <span style={{color:'#ebd483'}}>{fetchedRepo?.description}</span>
+                <Box>
+                    <Box style={{display:'flex',gap:'1rem',alignItems:'center'}}>
+                        <Typography variant='h5' style={{color:'#fcce28',margin:0}}>
+                            {fetchedRepo?.name} 
+                            
+                        </Typography>
+                        <Typography variant='h6' style={{color:'#5d5d5d'}}>v({fetchedPackage?.package?.version})</Typography>
+                        <Clipboard packName={fetchedPackage?.package?.name}/>
+                    </Box>
+                    <span style={{color:'#ebd483'}}>{fetchedRepo?.description}</span>
+                </Box>
+                <section className={classes.linksection}>                 
+                    <Box style={{display:'inline-grid',gridTemplateColumns:'auto auto auto',gap:'15px',alignSelf: 'end'}} >
+                        <Link href={fetchedPackage?.package?.links?.homepage} size="small" target='_blank' >
+                            <HomeFillIcon size={24} />
+                        </Link>
+                        <Link href={fetchedPackage?.package?.links?.npm} size="small" target='_blank'>
+                            <PackageIcon size={24} />
+                        </Link>
+                        <Link href={fetchedPackage?.package?.links?.repository} size="small" target='_blank'>
+                            <MarkGithubIcon size={24} />
+                        </Link>
+                    </Box> 
+                    <Box className={classes.publishbox}>
+                        <Typography variant='h6' style={{color:'#5d5d5d'}}>Last published: {timeago.format(fetchedPackage?.package?.date)}</Typography>
+                    </Box>
+                </section>
+                
+                
             </Box>
-           
+            
+            
+            
             <Box className={classes.infocontainer}>
                 {/* <Box > */}
                     <Charts />
@@ -319,6 +359,6 @@ export default function SinglePackage() {
                     <Loader />
                 </div>
             }
-        </div>
+        </section>
     )
 }
