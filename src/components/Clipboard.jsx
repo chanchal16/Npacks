@@ -52,9 +52,9 @@ export default function Clipboard({packName}) {
                     anchorOrigin={{vertical:'top',horizontal:'right'}}
                     open={open}
                     onClose={()=>setOpen(false)}
-                    autoHideDuration={5000}
+                    autoHideDuration={3000}
                     TransitionComponent={Slide}
-                    message="Copied successfully!"                            
+                    message="Copied successfully!🎉"                            
                 />
                 </Box>                                                                              
         </CopyToClipboard>
