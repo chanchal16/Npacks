@@ -19,7 +19,10 @@ const useStyles = makeStyles((theme)=>({
         justifyContent:'center',
     },
     links:{
-        margin:'12px'
+        margin:'12px',
+        '&:hover':{
+            color:theme.palette.primary.light
+        }
     }
 }))
 

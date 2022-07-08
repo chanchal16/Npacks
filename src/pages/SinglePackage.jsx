@@ -66,6 +66,11 @@ const useStyles = makeStyles((theme)=>({
         flexDirection: 'column',
         gap: '10px',
     },
+    links:{
+        '&:hover':{
+            color:theme.palette.primary.light
+        }
+    },
     infocontainer:{
         display:'flex',
         flexDirection:'row',
@@ -284,13 +289,13 @@ export default function SinglePackage() {
                 </Box>
                 <section className={classes.linksection}>                 
                     <Box style={{display:'inline-grid',gridTemplateColumns:'auto auto auto',gap:'15px',alignSelf: 'end'}} >
-                        <Link href={fetchedPackage?.package?.links?.homepage} size="small" target='_blank' >
+                        <Link href={fetchedPackage?.package?.links?.homepage} size="small" target='_blank' className={classes.links}>
                             <HomeFillIcon size={24} />
                         </Link>
-                        <Link href={fetchedPackage?.package?.links?.npm} size="small" target='_blank'>
+                        <Link href={fetchedPackage?.package?.links?.npm} size="small" target='_blank' className={classes.links}>
                             <PackageIcon size={24} />
                         </Link>
-                        <Link href={fetchedPackage?.package?.links?.repository} size="small" target='_blank'>
+                        <Link href={fetchedPackage?.package?.links?.repository} size="small" target='_blank' className={classes.links}>
                             <MarkGithubIcon size={24} />
                         </Link>
                     </Box> 
@@ -326,7 +331,7 @@ export default function SinglePackage() {
                         <Box className={classes.lowerOuterBox}>
                             <Box className={classes.lowerInnerBox}>
                                 <span className={classes.spanel}>License</span>
-                                <Typography className={classes.license}>{fetchedRepo?.license.spdx_id}</Typography>
+                                <Typography className={classes.license}>{fetchedRepo?.license?.spdx_id}</Typography>
                             </Box>
                             <Box className={classes.lowerInnerBox}>
                                 <span className={classes.spanel}>Updated at</span>
