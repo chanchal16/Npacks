@@ -56,7 +56,7 @@ export default function ApiContextProvider({children}) {
         })
         .then((res) => {
           // setFetchedRepos(res.data.items);
-          setFetchedRepo(res.data);
+          setFetchedRepo(res?.data);
         })
         .catch((err) => {
           console.log(err);
@@ -80,7 +80,7 @@ export default function ApiContextProvider({children}) {
         }
       })
       .then((res)=>{
-        setCommits(res.data)
+        setCommits(res?.data)
         
       })
       .catch(err=>console.log(err))
