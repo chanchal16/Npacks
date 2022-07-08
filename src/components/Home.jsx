@@ -10,8 +10,7 @@ import Loader from './Loader';
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme)=>({
-    categorycontainer:{
-        // width:'80%',       
+    categorycontainer:{     
         justifyContent:'space-evenly',
         background:theme.palette.secondary.main,
         border:`2px solid ${theme.palette.secondary.main}`,
@@ -21,8 +20,6 @@ const useStyles = makeStyles((theme)=>({
     },
     box:{
         width:'100px',
-        // border:'2px solid gray',
-        // cursor:'pointer'
     },
     topic:{
         width:'100%',
@@ -81,7 +78,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        fetchPackages(topic);      
+        fetchPackages(topic);     
     }, []);
 
     const handleClick= () => {
